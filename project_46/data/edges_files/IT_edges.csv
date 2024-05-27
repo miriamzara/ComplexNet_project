@@ -1,0 +1,440 @@
+nodeID_from,nodeID_to,node_label_from,node_label_to
+1,200,Abbiategrasso,Vigevano
+2,47,Acerra,Casalnuovo
+2,48,Acerra,Caserta
+2,58,Acerra,Ciampino
+2,83,Acerra,Frosinone
+2,94,Acerra,La Pigna
+2,158,Acerra,S. Maria Capua Vetere
+4,102,Adrano Centrale,Lineri
+4,133,Adrano Centrale,Paterno
+6,15,Alessandria,Asti
+6,86,Alessandria,Genova Via di Francia
+6,118,Alessandria,Moncalieri
+6,138,Alessandria,Piacenza
+7,88,Altamura,Gravina in Puglia
+8,20,Ancona,Bari Centrale
+8,21,Ancona,Barletta
+8,27,Ancona,Bisceglie
+8,34,Ancona,Brindisi
+8,59,Ancona,Civitanova Marche-Montegranaro
+8,79,Ancona,Foggia
+8,98,Ancona,Lecce
+8,117,Ancona,Molfetta
+8,119,Ancona,Monopoli
+8,120,Ancona,Montesilvano
+8,137,Ancona,Pescara
+8,179,Ancona,Termoli
+8,186,Ancona,Trani
+9,20,Andria,Bari Centrale
+9,21,Andria,Barletta
+9,28,Andria,Bitonto
+9,63,Andria,Corato
+10,52,Angri,Cava dei Tirreni
+10,124,Angri,Nocera Inferiore
+10,130,Angri,Pagani
+10,145,Angri,Portici Bellavista
+10,146,Angri,Portici Via Liberta
+10,160,Angri,Salerno
+10,168,Angri,Scafati
+10,184,Angri,Torre Annunziata Centrale
+10,185,Angri,Torre del Greco
+10,195,Angri,Via Sant'Antonio
+13,77,Arezzo,Firenze Porta Prato
+13,78,Arezzo,Firenze Statuto
+15,118,Asti,Moncalieri
+16,175,Augusta,Siracusa
+17,24,Aversa,Benevento
+17,48,Aversa,Caserta
+17,49,Aversa,Casoria-Afragola
+18,56,Avezzano,Chieti
+19,113,Bagheria,Milazzo
+20,21,Bari Centrale,Barletta
+20,27,Bari Centrale,Bisceglie
+20,28,Bari Centrale,Bitonto
+20,34,Bari Centrale,Brindisi
+20,59,Bari Centrale,Civitanova Marche-Montegranaro
+20,63,Bari Centrale,Corato
+20,79,Bari Centrale,Foggia
+20,98,Bari Centrale,Lecce
+20,110,Bari Centrale,Martina Franca
+20,117,Bari Centrale,Molfetta
+20,119,Bari Centrale,Monopoli
+20,120,Bari Centrale,Montesilvano
+20,137,Bari Centrale,Pescara
+20,179,Bari Centrale,Termoli
+20,186,Bari Centrale,Trani
+21,27,Barletta,Bisceglie
+21,28,Barletta,Bitonto
+21,34,Barletta,Brindisi
+21,59,Barletta,Civitanova Marche-Montegranaro
+21,63,Barletta,Corato
+21,79,Barletta,Foggia
+21,98,Barletta,Lecce
+21,117,Barletta,Molfetta
+21,119,Barletta,Monopoli
+21,120,Barletta,Montesilvano
+21,137,Barletta,Pescara
+21,179,Barletta,Termoli
+21,186,Barletta,Trani
+23,160,Battipaglia,Salerno
+24,25,Benevento,Benevento Porta Rufina
+24,40,Benevento,Campobasso
+24,48,Benevento,Caserta
+26,171,Bergamo,Seregno
+27,34,Bisceglie,Brindisi
+27,59,Bisceglie,Civitanova Marche-Montegranaro
+27,79,Bisceglie,Foggia
+27,98,Bisceglie,Lecce
+27,117,Bisceglie,Molfetta
+27,119,Bisceglie,Monopoli
+27,120,Bisceglie,Montesilvano
+27,137,Bisceglie,Pescara
+27,179,Bisceglie,Termoli
+27,186,Bisceglie,Trani
+28,63,Bitonto,Corato
+29,163,Bollate Nord,Saronno
+30,31,Bologna Centrale,Bologna Fiere
+30,193,Bologna Centrale,Venezia Mestre
+32,156,Bolzano,Rovereto
+32,188,Bolzano,Trento
+33,132,Brescia,Parma
+33,197,Brescia,Viadana Bresciana
+34,59,Brindisi,Civitanova Marche-Montegranaro
+34,79,Brindisi,Foggia
+34,98,Brindisi,Lecce
+34,117,Brindisi,Molfetta
+34,119,Brindisi,Monopoli
+34,120,Brindisi,Montesilvano
+34,137,Brindisi,Pescara
+34,179,Brindisi,Termoli
+34,186,Brindisi,Trani
+35,36,Busto Arsizio,Busto Arsizio Nord
+35,84,Busto Arsizio,Gallarate
+35,100,Busto Arsizio,Legnano
+35,152,Busto Arsizio,Rho
+35,163,Busto Arsizio,Saronno
+36,163,Busto Arsizio Nord,Saronno
+37,164,Cagliari,Sassari
+41,85,Canicatti,Gela
+41,101,Canicatti,Licata
+41,116,Canicatti,Modica
+41,150,Canicatti,Ragusa
+41,175,Canicatti,Siracusa
+41,203,Canicatti,Vittoria
+45,46,Casalecchio Garibaldi,Casalecchio di Reno
+45,142,Casalecchio Garibaldi,Pistoia
+46,142,Casalecchio di Reno,Pistoia
+47,48,Casalnuovo,Caserta
+47,58,Casalnuovo,Ciampino
+47,83,Casalnuovo,Frosinone
+47,94,Casalnuovo,La Pigna
+47,143,Casalnuovo,Pomigliano D'Arco
+47,149,Casalnuovo,Pratola Ponte
+47,158,Casalnuovo,S. Maria Capua Vetere
+48,58,Caserta,Ciampino
+48,83,Caserta,Frosinone
+48,94,Caserta,La Pigna
+48,158,Caserta,S. Maria Capua Vetere
+50,72,Castellammare di Stabia,Ercolano Scavi
+50,73,Castellammare di Stabia,Ercolano-Miglio D'Oro
+50,122,Castellammare di Stabia,Napoli Centrale
+50,123,Castellammare di Stabia,Napoli Gianturco
+50,141,Castellammare di Stabia,Pioppaino
+50,145,Castellammare di Stabia,Portici Bellavista
+50,146,Castellammare di Stabia,Portici Via Liberta
+50,161,Castellammare di Stabia,San Giorgio a Cremano
+50,162,Castellammare di Stabia,San Giorgio a Cremano-Cavalli di Bronzo Villa
+50,168,Castellammare di Stabia,Scafati
+50,176,Castellammare di Stabia,Somma
+50,185,Castellammare di Stabia,Torre del Greco
+50,195,Castellammare di Stabia,Via Sant'Antonio
+50,196,Castellammare di Stabia,Via del Monte
+52,124,Cava dei Tirreni,Nocera Inferiore
+52,130,Cava dei Tirreni,Pagani
+52,145,Cava dei Tirreni,Portici Bellavista
+52,146,Cava dei Tirreni,Portici Via Liberta
+52,160,Cava dei Tirreni,Salerno
+52,168,Cava dei Tirreni,Scafati
+52,184,Cava dei Tirreni,Torre Annunziata Centrale
+52,185,Cava dei Tirreni,Torre del Greco
+52,195,Cava dei Tirreni,Via Sant'Antonio
+53,128,Cesano Maderno,Paderno Dugnano
+53,131,Cesano Maderno,Palazzolo Milanese
+53,163,Cesano Maderno,Saronno
+53,171,Cesano Maderno,Seregno
+54,74,Cesena,Faenza
+54,75,Cesena,Fano
+54,81,Cesena,Forli
+54,91,Cesena,Imola
+54,136,Cesena,Pesaro
+54,153,Cesena,Riccione
+54,155,Cesena,Rimini
+54,170,Cesena,Senigallia
+58,83,Ciampino,Frosinone
+58,94,Ciampino,La Pigna
+58,158,Ciampino,S. Maria Capua Vetere
+59,79,Civitanova Marche-Montegranaro,Foggia
+59,98,Civitanova Marche-Montegranaro,Lecce
+59,107,Civitanova Marche-Montegranaro,Macerata
+59,117,Civitanova Marche-Montegranaro,Molfetta
+59,119,Civitanova Marche-Montegranaro,Monopoli
+59,120,Civitanova Marche-Montegranaro,Montesilvano
+59,137,Civitanova Marche-Montegranaro,Pescara
+59,179,Civitanova Marche-Montegranaro,Termoli
+59,186,Civitanova Marche-Montegranaro,Trani
+60,96,Civitavecchia,Ladispoli-Cerveteri
+62,144,Conegliano,Pordenone
+62,189,Conegliano,Udine
+66,109,Cremona,Mantova
+66,134,Cremona,Pavia
+70,121,Desio,Monza
+70,171,Desio,Seregno
+70,172,Desio,Sesto S.Giovanni
+72,73,Ercolano Scavi,Ercolano-Miglio D'Oro
+72,122,Ercolano Scavi,Napoli Centrale
+72,123,Ercolano Scavi,Napoli Gianturco
+72,141,Ercolano Scavi,Pioppaino
+72,145,Ercolano Scavi,Portici Bellavista
+72,146,Ercolano Scavi,Portici Via Liberta
+72,161,Ercolano Scavi,San Giorgio a Cremano
+72,162,Ercolano Scavi,San Giorgio a Cremano-Cavalli di Bronzo Villa
+72,168,Ercolano Scavi,Scafati
+72,176,Ercolano Scavi,Somma
+72,185,Ercolano Scavi,Torre del Greco
+72,195,Ercolano Scavi,Via Sant'Antonio
+72,196,Ercolano Scavi,Via del Monte
+73,122,Ercolano-Miglio D'Oro,Napoli Centrale
+73,123,Ercolano-Miglio D'Oro,Napoli Gianturco
+73,141,Ercolano-Miglio D'Oro,Pioppaino
+73,145,Ercolano-Miglio D'Oro,Portici Bellavista
+73,146,Ercolano-Miglio D'Oro,Portici Via Liberta
+73,161,Ercolano-Miglio D'Oro,San Giorgio a Cremano
+73,162,Ercolano-Miglio D'Oro,San Giorgio a Cremano-Cavalli di Bronzo Villa
+73,168,Ercolano-Miglio D'Oro,Scafati
+73,176,Ercolano-Miglio D'Oro,Somma
+73,185,Ercolano-Miglio D'Oro,Torre del Greco
+73,195,Ercolano-Miglio D'Oro,Via Sant'Antonio
+73,196,Ercolano-Miglio D'Oro,Via del Monte
+74,75,Faenza,Fano
+74,81,Faenza,Forli
+74,91,Faenza,Imola
+74,136,Faenza,Pesaro
+74,153,Faenza,Riccione
+74,155,Faenza,Rimini
+74,170,Faenza,Senigallia
+75,81,Fano,Forli
+75,91,Fano,Imola
+75,136,Fano,Pesaro
+75,153,Fano,Riccione
+75,155,Fano,Rimini
+75,170,Fano,Senigallia
+76,151,Ferrara,Ravenna
+76,155,Ferrara,Rimini
+76,157,Ferrara,Rovigo
+77,78,Firenze Porta Prato,Firenze Statuto
+79,98,Foggia,Lecce
+79,117,Foggia,Molfetta
+79,119,Foggia,Monopoli
+79,120,Foggia,Montesilvano
+79,137,Foggia,Pescara
+79,179,Foggia,Termoli
+79,186,Foggia,Trani
+80,93,Foligno,Jesi
+80,135,Foligno,Perugia
+80,180,Foligno,Terni
+81,91,Forli,Imola
+81,136,Forli,Pesaro
+81,153,Forli,Riccione
+81,155,Forli,Rimini
+81,170,Forli,Senigallia
+82,90,Francavilla Fontana,Grottaglie
+83,94,Frosinone,La Pigna
+83,158,Frosinone,S. Maria Capua Vetere
+84,100,Gallarate,Legnano
+84,152,Gallarate,Rho
+85,101,Gela,Licata
+85,116,Gela,Modica
+85,150,Gela,Ragusa
+85,175,Gela,Siracusa
+85,203,Gela,Vittoria
+86,95,Genova Via di Francia,La Spezia Migliarina
+86,198,Genova Via di Francia,Viareggio
+87,189,Gorizia Centrale,Udine
+89,103,Grosseto,Livorno Centrale
+91,136,Imola,Pesaro
+91,153,Imola,Riccione
+91,155,Imola,Rimini
+91,170,Imola,Senigallia
+92,167,Imperia Porto Maurizio,Savona
+93,180,Jesi,Terni
+94,143,La Pigna,Pomigliano D'Arco
+94,149,La Pigna,Pratola Ponte
+94,158,La Pigna,S. Maria Capua Vetere
+95,198,La Spezia Migliarina,Viareggio
+98,117,Lecce,Molfetta
+98,119,Lecce,Monopoli
+98,120,Lecce,Montesilvano
+98,137,Lecce,Pescara
+98,179,Lecce,Termoli
+98,186,Lecce,Trani
+99,121,Lecco,Monza
+100,152,Legnano,Rho
+101,116,Licata,Modica
+101,150,Licata,Ragusa
+101,175,Licata,Siracusa
+101,203,Licata,Vittoria
+102,133,Lineri,Paterno
+105,142,Lucca,Pistoia
+105,148,Lucca,Prato Borgo Nuovo
+105,177,Lucca,Tassignano-Capannori
+109,115,Mantova,Modena
+111,187,Mazara del Vallo,Trapani
+115,132,Modena,Parma
+115,138,Modena,Piacenza
+115,165,Modena,Sassuolo
+115,166,Modena,Sassuolo-Reggio
+116,150,Modica,Ragusa
+116,175,Modica,Siracusa
+116,203,Modica,Vittoria
+117,119,Molfetta,Monopoli
+117,120,Molfetta,Montesilvano
+117,137,Molfetta,Pescara
+117,179,Molfetta,Termoli
+117,186,Molfetta,Trani
+119,120,Monopoli,Montesilvano
+119,137,Monopoli,Pescara
+119,179,Monopoli,Termoli
+119,186,Monopoli,Trani
+120,137,Montesilvano,Pescara
+120,179,Montesilvano,Termoli
+120,186,Montesilvano,Trani
+121,171,Monza,Seregno
+121,172,Monza,Sesto S.Giovanni
+122,123,Napoli Centrale,Napoli Gianturco
+122,141,Napoli Centrale,Pioppaino
+122,145,Napoli Centrale,Portici Bellavista
+122,146,Napoli Centrale,Portici Via Liberta
+122,161,Napoli Centrale,San Giorgio a Cremano
+122,162,Napoli Centrale,San Giorgio a Cremano-Cavalli di Bronzo Villa
+122,168,Napoli Centrale,Scafati
+122,176,Napoli Centrale,Somma
+122,185,Napoli Centrale,Torre del Greco
+122,195,Napoli Centrale,Via Sant'Antonio
+122,196,Napoli Centrale,Via del Monte
+123,141,Napoli Gianturco,Pioppaino
+123,145,Napoli Gianturco,Portici Bellavista
+123,146,Napoli Gianturco,Portici Via Liberta
+123,161,Napoli Gianturco,San Giorgio a Cremano
+123,162,Napoli Gianturco,San Giorgio a Cremano-Cavalli di Bronzo Villa
+123,168,Napoli Gianturco,Scafati
+123,176,Napoli Gianturco,Somma
+123,185,Napoli Gianturco,Torre del Greco
+123,195,Napoli Gianturco,Via Sant'Antonio
+123,196,Napoli Gianturco,Via del Monte
+124,130,Nocera Inferiore,Pagani
+124,145,Nocera Inferiore,Portici Bellavista
+124,146,Nocera Inferiore,Portici Via Liberta
+124,160,Nocera Inferiore,Salerno
+124,168,Nocera Inferiore,Scafati
+124,184,Nocera Inferiore,Torre Annunziata Centrale
+124,185,Nocera Inferiore,Torre del Greco
+124,195,Nocera Inferiore,Via Sant'Antonio
+125,152,Novara,Rho
+125,173,Novara,Settimo
+125,194,Novara,Vercelli
+128,131,Paderno Dugnano,Palazzolo Milanese
+130,145,Pagani,Portici Bellavista
+130,146,Pagani,Portici Via Liberta
+130,160,Pagani,Salerno
+130,168,Pagani,Scafati
+130,184,Pagani,Torre Annunziata Centrale
+130,185,Pagani,Torre del Greco
+130,195,Pagani,Via Sant'Antonio
+132,138,Parma,Piacenza
+132,197,Parma,Viadana Bresciana
+136,153,Pesaro,Riccione
+136,155,Pesaro,Rimini
+136,170,Pesaro,Senigallia
+137,179,Pescara,Termoli
+137,186,Pescara,Trani
+141,145,Pioppaino,Portici Bellavista
+141,146,Pioppaino,Portici Via Liberta
+141,161,Pioppaino,San Giorgio a Cremano
+141,162,Pioppaino,San Giorgio a Cremano-Cavalli di Bronzo Villa
+141,168,Pioppaino,Scafati
+141,176,Pioppaino,Somma
+141,185,Pioppaino,Torre del Greco
+141,195,Pioppaino,Via Sant'Antonio
+141,196,Pioppaino,Via del Monte
+142,148,Pistoia,Prato Borgo Nuovo
+142,177,Pistoia,Tassignano-Capannori
+143,149,Pomigliano D'Arco,Pratola Ponte
+144,189,Pordenone,Udine
+145,146,Portici Bellavista,Portici Via Liberta
+145,160,Portici Bellavista,Salerno
+145,161,Portici Bellavista,San Giorgio a Cremano
+145,162,Portici Bellavista,San Giorgio a Cremano-Cavalli di Bronzo Villa
+145,168,Portici Bellavista,Scafati
+145,176,Portici Bellavista,Somma
+145,184,Portici Bellavista,Torre Annunziata Centrale
+145,185,Portici Bellavista,Torre del Greco
+145,195,Portici Bellavista,Via Sant'Antonio
+145,196,Portici Bellavista,Via del Monte
+146,160,Portici Via Liberta,Salerno
+146,161,Portici Via Liberta,San Giorgio a Cremano
+146,162,Portici Via Liberta,San Giorgio a Cremano-Cavalli di Bronzo Villa
+146,168,Portici Via Liberta,Scafati
+146,176,Portici Via Liberta,Somma
+146,184,Portici Via Liberta,Torre Annunziata Centrale
+146,185,Portici Via Liberta,Torre del Greco
+146,195,Portici Via Liberta,Via Sant'Antonio
+146,196,Portici Via Liberta,Via del Monte
+148,177,Prato Borgo Nuovo,Tassignano-Capannori
+150,175,Ragusa,Siracusa
+150,203,Ragusa,Vittoria
+151,155,Ravenna,Rimini
+152,173,Rho,Settimo
+152,194,Rho,Vercelli
+153,155,Riccione,Rimini
+153,170,Riccione,Senigallia
+154,180,Rieti,Terni
+155,170,Rimini,Senigallia
+156,188,Rovereto,Trento
+159,193,S.Dona di Piave-Jesolo,Venezia Mestre
+160,168,Salerno,Scafati
+160,184,Salerno,Torre Annunziata Centrale
+160,185,Salerno,Torre del Greco
+160,195,Salerno,Via Sant'Antonio
+161,162,San Giorgio a Cremano,San Giorgio a Cremano-Cavalli di Bronzo Villa
+161,168,San Giorgio a Cremano,Scafati
+161,176,San Giorgio a Cremano,Somma
+161,185,San Giorgio a Cremano,Torre del Greco
+161,195,San Giorgio a Cremano,Via Sant'Antonio
+161,196,San Giorgio a Cremano,Via del Monte
+162,168,San Giorgio a Cremano-Cavalli di Bronzo Villa,Scafati
+162,176,San Giorgio a Cremano-Cavalli di Bronzo Villa,Somma
+162,185,San Giorgio a Cremano-Cavalli di Bronzo Villa,Torre del Greco
+162,195,San Giorgio a Cremano-Cavalli di Bronzo Villa,Via Sant'Antonio
+162,196,San Giorgio a Cremano-Cavalli di Bronzo Villa,Via del Monte
+163,171,Saronno,Seregno
+163,190,Saronno,Varese
+165,166,Sassuolo,Sassuolo-Reggio
+168,176,Scafati,Somma
+168,184,Scafati,Torre Annunziata Centrale
+168,185,Scafati,Torre del Greco
+168,195,Scafati,Via Sant'Antonio
+168,196,Scafati,Via del Monte
+171,172,Seregno,Sesto S.Giovanni
+173,194,Settimo,Vercelli
+175,203,Siracusa,Vittoria
+176,185,Somma,Torre del Greco
+176,195,Somma,Via Sant'Antonio
+176,196,Somma,Via del Monte
+179,186,Termoli,Trani
+184,185,Torre Annunziata Centrale,Torre del Greco
+184,195,Torre Annunziata Centrale,Via Sant'Antonio
+185,195,Torre del Greco,Via Sant'Antonio
+185,196,Torre del Greco,Via del Monte
+195,196,Via Sant'Antonio,Via del Monte
+201,202,Viterbo Porta Fiorentina,Viterbo Porta Romana

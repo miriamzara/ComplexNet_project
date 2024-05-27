@@ -1,0 +1,31 @@
+railway_name,railway_stops
+Tetange - Langengrund,['Langengrund' 'Rumelange' 'Tetange']
+Ettelbrueck - Diekirch,[]
+Luxembourg - Kleinbettingen,"['Bertrange-Strassen' 'Capellen' 'Hollerich' 'Kleinbettingen' 'Luxembourg'
+ 'Mamer' 'Mamer-Lycee']"
+Luxembourg - Troisvierges,"['Clervaux' 'Colmar-Berg' 'Colmar-Usines' 'Cruchten' 'Dommeldange'
+ 'Drauffelt' 'Ettelbruck' 'Goebelsmuehle' 'Heisdorf' 'Kautenbach'
+ 'Lintgen' 'Lorentzweiler' 'Luxembourg' 'Maulusmuehle' 'Mersch' 'Michelau'
+ 'Schieren' 'Troisvierges' 'Walferdange']"
+Noertzange - Rumelange,['Kayl' 'Noertzange' 'Rumelange' 'Tetange']
+Kautenbach - Wiltz,['Kautenbach' 'Merkholtz' 'Paradiso' 'Wiltz']
+Ettelbrueck - Bissen,['Bissen' 'Colmar-Berg' 'Colmar-Usines' 'Schieren']
+Bettembourg - Dudelange/Usines - Volmerange,"['Bettembourg' 'Dudelange-Burange' 'Dudelange-Centre' 'Dudelange-Usines'
+ 'Dudelange-Ville']"
+Luxembourg - Sandweiler/Contern - Wasserbillig,"['Betzdorf' 'Cents-Hamm' 'Luxembourg' 'Manternach' 'Mertert' 'Munsbach'
+ 'Oetrange' 'Roodt' 'Sandweiler-Contern' 'Wasserbillig' 'Wecker']"
+Petange - Esch/Alzette,"['Belval-Lycee' 'Belval-Redange' 'Belval-Usines' 'Belvaux-Soleuvre'
+ 'Differdange (PA)' 'Differdange (gare)' 'Niederkorn' 'Oberkorn' 'Petange']"
+Petange - Rodange (Longwy),[]
+Petange - Rodange (Athus),['Lamadelaine']
+Petange - Rodange (Aubange),['Lamadelaine' 'Petange']
+Esch/Alzette - Audun-le-Tiche,[]
+Petange - Luxembourg,"['Bascharage-Sanem' 'Dippach-Reckange' 'Hollerich' 'Leudelange' 'Petange'
+ 'Schouweiler']"
+Brucherberg - Scheuerbusch,[]
+Berchem - Alzingen - Oetrange,['Alzingen' 'Berchem' 'Oetrange' 'Syren']
+Zouffgen -Luxembourg,"['Alzingen' 'Berchem' 'Bettembourg' 'Bettembourg-Marchandises' 'Howald'
+ 'Luxembourg']"
+Luxembourg - Alzingen,[]
+Bettembourg - Esch/Alzette,['Bettembourg' 'Noertzange' 'Schifflange']
+NBS Bettembourg - Luxembourg,['Berchem' 'Bettembourg' 'Howald']

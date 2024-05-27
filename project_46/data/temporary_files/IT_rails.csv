@@ -1,0 +1,311 @@
+railway_name,railway_stops
+Ancona-Lecce,"['Ancona', 'Bari Centrale', 'Barletta', 'Bisceglie', 'Brindisi', 'Civitanova Marche-Montegranaro', 'Foggia', 'Lecce', 'Molfetta', 'Monopoli', 'Montesilvano', 'Pescara', 'Termoli', 'Trani']"
+Foggia-Manfredonia,['Manfredonia']
+Macomer-Nuoro,['Nuoro']
+Chivasso-Ivrea-Aosta,[]
+Teramo-Giulianova,['Teramo']
+Chilivani-Olbia,['Olbia']
+Cagliari-Sassari,"['Cagliari', 'Sassari']"
+Aosta-Pont Saint Martin,['Aosta']
+Bologna-Verona,[]
+Messina-Palermo,"['Bagheria', 'Milazzo']"
+Torino-Asti-Alessandria,"['Alessandria', 'Asti', 'Moncalieri']"
+Catania-Siracusa,"['Augusta', 'Siracusa']"
+Genova-Pisa,"['Genova Via di Francia', 'La Spezia Migliarina', 'Viareggio']"
+Verona-Brennero,"['Bolzano', 'Rovereto', 'Trento']"
+Venezia-Trieste,"['S.Dona di Piave-Jesolo', 'Venezia Mestre']"
+Mestre-Venezia,['Venezia Mestre']
+Cremona-Mantova,"['Cremona', 'Mantova']"
+Palermo-Trapani Via Castelvetrano,"['Mazara del Vallo', 'Trapani']"
+La Spezia-Parma,[]
+Milano-Bologna,"['Modena', 'Parma', 'Piacenza']"
+Genova-Ventimiglia,"['Imperia Porto Maurizio', 'Savona']"
+Napoli-Benevento,['Benevento']
+Lecco-Milano,"['Lecco', 'Monza']"
+Direttissima Roma-Napoli,"['Aversa', 'Casoria-Afragola']"
+Rovigo-Chioggia,['Chioggia']
+Reggio Emilia-Sassuolo,[]
+Roma Nord-Civita Castellana-Viterbo,"['Viterbo Porta Fiorentina', 'Viterbo Porta Romana']"
+Torino-Airasca-Pinerolo-Torre Pellice,['Pinerolo']
+Roma-Cassino-Napoli,"['Acerra', 'Casalnuovo', 'Caserta', 'Ciampino', 'Frosinone', 'La Pigna', 'S. Maria Capua Vetere']"
+Campiglia Marittima-Piombino,['Piombino']
+Ventimiglia-Limone-Cuneo,['Cuneo']
+Modena-Sassuolo,"['Modena', 'Sassuolo', 'Sassuolo-Reggio']"
+Faenza-Firenze (Faentina),['Faenza']
+Saronno-Laveno,"['Saronno', 'Varese']"
+Treviso Centrale-Belluno,[]
+Roma-Velletri,['Velletri']
+Foggia-Lucera,['Lucera']
+Palermo-Agrigento-Porto Empedocle,['Agrigento Bassa']
+Legnago-Monselice,[]
+Torre Annunziata-Castellammare di Stabia-Gragnano,['Castellammare di Stabia']
+Schio-Vicenza,['Schio']
+Vercelli-Pavia,['Vercelli']
+Borgo S.Lorenzo-Pontassieve,[]
+Torino-Caselle-CiriÃ¨-Lanzo-Ceres,[]
+Pistoia-Bologna (Porrettana),"['Casalecchio Garibaldi', 'Casalecchio di Reno', 'Pistoia']"
+Roma-Nettuno,[]
+Parma-S.Stefano Magra-La Spezia,[]
+Bolzano-Merano,[]
+Fossanova-Terracina,[]
+Macomer-Bosa Marina,[]
+San Benedetto del Tronto-Porto d'Ascoli-Ascoli Piceno,['Ascoli Piceno']
+Aulla-Lucca,['Lucca']
+Ferrovia della Val Venosta,[]
+Trofarello-Chieri,['Chieri']
+Terracina-Priverno Fossanova,['Terracina']
+Verona-Rovigo,[]
+Firenze Porta al Prato-Empoli,[]
+Trento-Venezia,['Bassano del Grappa']
+Benevento-Campobasso,"['Benevento', 'Campobasso']"
+Ceva-Bastia-Bra,[]
+Milano-Asso,"['Cesano Maderno', 'Paderno Dugnano', 'Palazzolo Milanese']"
+Zollino-Gallipoli,[]
+San Giuseppe di Cairo-Acqui Terme-Alessandria,[]
+Barletta-Spinazzola,['Canosa di Puglia']
+Adria-Mestre,['Mira Buse']
+Caltanissetta Xirbi-Siracusa,"['Canicatti', 'Gela', 'Licata', 'Modica', 'Ragusa', 'Siracusa', 'Vittoria']"
+Bologna-Portomaggiore,['Bologna Fiere']
+Ferrovia Centrale Umbra,['Terni']
+Raccordo Genova Ovada-Genova Milano,[]
+Rocchetta Sant'Antonio-Lacedonia,"['Altamura', 'Gravina in Puglia']"
+Chivasso-Casale,[]
+Metro Linea A Anagnina-Battistini,[]
+UNK,"['Bologna Centrale', 'Venezia Mestre']"
+Torino-Genova,"['Alessandria', 'Genova Via di Francia']"
+Tratto di Interconnessione Firenze-Roma,[]
+Napoli-Salerno,"['Angri', 'Cava dei Tirreni', 'Nocera Inferiore', 'Pagani', 'Portici Bellavista', 'Portici Via Liberta', 'Salerno', 'Scafati', 'Torre Annunziata Centrale', 'Torre del Greco', ""Via Sant'Antonio""]"
+Sulmona-Isernia,[]
+Circumflegrea,[]
+Cosenza Centro-Catanzaro Centro,['Cosenza']
+Circumvesuviana,"['Castellammare di Stabia', 'Ercolano Scavi', ""Ercolano-Miglio D'Oro"", 'Napoli Centrale', 'Napoli Gianturco', 'Pioppaino', 'Portici Bellavista', 'Portici Via Liberta', 'San Giorgio a Cremano', 'San Giorgio a Cremano-Cavalli di Bronzo Villa', 'Scafati', 'Somma', 'Torre del Greco', ""Via Sant'Antonio"", 'Via del Monte']"
+Belluno-Calalzo,[]
+Reggio Calabria-Taranto,['Crotone']
+Catania-Gela,['Caltagirone']
+Brescia-Iseo,"['Brescia', 'Viadana Bresciana']"
+Torino-Milano AV,['Torino Porta Susa']
+Napoli-Salerno AV,['Salerno']
+Anello Ferroviario di Roma,[]
+Milano-Bologna AV,['Bologna Centrale']
+Terni-Rieti-L'Aquila-Sulmona,"['Rieti', 'Terni']"
+Vairano-Isernia,[]
+Viterbo-Attigliano,"['Viterbo Porta Fiorentina', 'Viterbo Porta Romana']"
+Torino-Fossano-Savona,['Savona']
+Salerno-Reggio Calabria,"['Battipaglia', 'Salerno']"
+Napoli-Nola-Baiano,"['Casalnuovo', 'La Pigna', ""Pomigliano D'Arco"", 'Pratola Ponte']"
+Conegliano-Ponte nelle Alpi Polpet,[]
+Metro Linea B Laurentina-Rebibbia,[]
+Termoli-Campobasso,['Campobasso']
+Faenza-Lavezzola,[]
+Napoli-Foggia,"['Aversa', 'Benevento', 'Caserta']"
+Direttissima Roma-Firenze,"['Firenze Porta Prato', 'Firenze Statuto']"
+Potenza-Foggia,['Potenza Superiore']
+Roma-Viterbo,['Viterbo Porta Romana']
+Molteno-Lecco,['Lecco']
+Bari-Barletta,"['Andria', 'Bari Centrale', 'Barletta', 'Bitonto', 'Corato']"
+Milano Greco Pirelli-Milano Porta Garibaldi,[]
+Milano Greco Pirelli-Milano Centrale,[]
+Lecco-Calolziocorte-Ponte S. Pietro-Bergamo,[]
+Cancello-Benevento,"['Benevento', 'Benevento Porta Rufina']"
+Taranto-Brindisi,"['Francavilla Fontana', 'Grottaglie']"
+Parma-Suzzara,[]
+Colico-Lecco,['Lecco']
+Verona-Mantova-Modena,"['Mantova', 'Modena']"
+Biella-Santhia,[]
+Salerno-Mercato San Severino,['Salerno']
+Passante ferroviario di Milano,[]
+Brescia-Parma,"['Brescia', 'Parma', 'Viadana Bresciana']"
+Avellino-Rocchetta,[]
+Bergamo-Rovato,['Bergamo']
+Portogruaro-Casarsa,[]
+Alessandria-Cavallermaggiore,['Alessandria']
+Viareggio-Lucca-Pistoia-Prato,"['Lucca', 'Pistoia', 'Prato Borgo Nuovo', 'Tassignano-Capannori']"
+Cumana,[]
+Domodossola-Milano,"['Busto Arsizio', 'Gallarate', 'Legnano', 'Rho']"
+Pisa-Roma,"['Civitavecchia', 'Ladispoli-Cerveteri']"
+Battipaglia-Tropea-Reggio di Calabria,[]
+Palermo-Catania,['Catania Acquicella']
+Siena-Asciano-Chiusi-Chianciano,['Siena']
+Capranica-Viterbo,[]
+Asciano-Monte Antico,[]
+Saronno-Como Nord Lago,['Saronno']
+Fabriano-Macerata-Civitanova M.,"['Civitanova Marche-Montegranaro', 'Macerata']"
+Pisa-Collesalvetti-Vada-Cecina-Saline di Volterra,[]
+Airasca-Saluzzo,[]
+Alessandria-Valenza-Casale Monferrato,['Casale Monferrato']
+Chiavenna-Colico,[]
+Briga-Domodossola,[]
+Servizio-Metropolitana,['Potenza Superiore']
+Biella-Novara,['Novara']
+Lecce-Otranto,['Lecce']
+Torino-Orbassano,[]
+Orte-Capranica,[]
+Siena-Monte Antico-Montepescali,[]
+Martina Franca-Lecce,['Francavilla Fontana']
+Agrigento-CanicattÃ¬,[]
+Pisa-Lucca,[]
+Castagnole-Asti,['Asti']
+Interconnessione Parma AV,[]
+Ventimiglia-Nizza,[]
+Roma-Ostia Castel Fusano,[]
+Porto Ceresio-Varese,['Varese']
+Albate Camerlata-Molteno,[]
+Nizza M.-Acqui T.,[]
+Cantalupo-Acqui-Savona,[]
+Cosenza-Sibari,['Cosenza']
+Trento-MalÃ¨-Marilleva,[]
+Castellanza (vecchia)-Valmorea-Mendrisio,[]
+Dir. Torino-Orbassano,[]
+Terontola-Foligno,"['Foligno', 'Perugia']"
+Bari-Casamassima-Putignano,[]
+Novoli-Gagliano del Capo,[]
+Bari-Martina Franca-Taranto,"['Bari Centrale', 'Martina Franca']"
+Bari-Matera,['Altamura']
+Suzzara-Ferrara,['Ferrara']
+Messina-Catania,['Acireale']
+San Zeno Folzano-Olmeneta,[]
+Laveno Mombello-Gallarate,[]
+Reggio Emilia-Guastalla,[]
+Circumetnea,"['Adrano Centrale', 'Lineri', 'Paterno']"
+Firenze-Roma,"['Arezzo', 'Firenze Porta Prato', 'Firenze Statuto']"
+Sondrio-Colico,[]
+Empoli-Siena,['Siena']
+Milano-Mortara,"['Abbiategrasso', 'Vigevano']"
+Potenza-Altamura,['Gravina in Puglia']
+Udine-Cervignano,['Udine']
+Cintura di Udine,[]
+Cintura sud di Milano,[]
+Fossano-Cuneo,['Cuneo']
+Caltanissetta Xirbi-Agrigento,['Caltanissetta Centrale']
+Milano Nord Bovisa-Saronno,"['Bollate Nord', 'Saronno']"
+Ancona-Orte-Roma,"['Foligno', 'Jesi', 'Terni']"
+Saronno-Seregno,"['Cesano Maderno', 'Saronno', 'Seregno']"
+Roma-Benevento,[]
+Rovato Borgo-Bornato Calino,[]
+Saronno-Malpensa,"['Busto Arsizio', 'Busto Arsizio Nord', 'Saronno']"
+Casale-Vercelli,['Vercelli']
+Monza-Molteno,[]
+Stia-Arezzo-Sinalunga,[]
+Gallipoli-Casarano,[]
+Tirano-Sondrio,[]
+Bra-Carmagnola,[]
+Acqui-Ovada-Genova,[]
+Campobasso-Isernia,[]
+Saluzzo-Busca-Cuneo,[]
+Casale-Asti,['Casale Monferrato']
+Castelfranco Veneto-Bassano del Grappa,['Bassano del Grappa']
+Camposanpiero-Cittadella,[]
+Cremona-Fidenza,['Cremona']
+Savigliano-Saluzzo,[]
+Domodossola-S.Maria Maggiore-Locarno,[]
+Ferrovia della Val Pusteria,[]
+Pavia-Cremona,"['Cremona', 'Pavia']"
+Sacile-Gemona del Friuli,[]
+Rovigo-Bologna,"['Ferrara', 'Rovigo']"
+Mortara-Asti,[]
+Novara-Busto Arsizio,['Novara']
+Castelfranco Veneto-Montebelluna,[]
+Maglie-Gagliano del Capo,[]
+Cava Carbonara-Torreberetti,[]
+Firenze-Pisa-Livorno,['Empoli']
+Chiasso-Bivio Rosales,[]
+Genova-Ovada-Acqui Terme,[]
+Chivasso-Asti Via Brusasco,[]
+Udine-Cividale,[]
+Potenza-Avigliano,[]
+Roma-Pescara,"['Avezzano', 'Chieti']"
+Settimo-Volpiano-Rivarolo-Cuorgne-Pont,[]
+Casale-Mortara,['Casale Monferrato']
+Bressana Bottarone-Bivio Voghera,[]
+Asti-Nizza M.,['Asti']
+MondovÃ¬-Cuneo,['Cuneo Gesso']
+Jesenice-Trieste,[]
+Interconnessione Firenze-Valdarno,[]
+Interconnessione Direttissima Arezzo Nord,[]
+Rocca d'Evandro-Venafro,[]
+Bari-Taranto,['Bari Centrale']
+Tarvisio-Udine (Pontebbana),['Udine']
+Luino-Laveno Mombello,[]
+Roma-Napoli AV,"['Napoli Centrale', 'Napoli Gianturco']"
+Torino-Bardonecchia,['Collegno']
+Passante ferroviario di Napoli,"['Napoli Centrale', 'Napoli Gianturco']"
+Raccordo Nice-Breil Sur Roya,[]
+Raccordo Principe-Rivarolo,[]
+raccordo,[]
+Bologna-Firenze AV,"['Bologna Centrale', 'Bologna Fiere']"
+Livorno-Grosseto,"['Grosseto', 'Livorno Centrale']"
+Udine-Trieste,"['Gorizia Centrale', 'Udine']"
+Potenza-Metaponto,[]
+Bivio Rosales-Milano Greco Pirelli,"['Desio', 'Monza', 'Seregno', 'Sesto S.Giovanni']"
+Albate Camerlata-Bivio Rosales,[]
+Raccordo Rivarolo-Genova Milano,[]
+Direttissima Bologna-Firenze,"['Firenze Porta Prato', 'Firenze Statuto']"
+Vienna -Trieste (Ferrovia Meridionale),[]
+Ferrara-Rimini,"['Ferrara', 'Ravenna', 'Rimini']"
+Russi-Castelbolognese Riolo Terme,[]
+Genova-Ronco Scrivia,[]
+Nogara-Poggio Rusco,[]
+Scalo merci,[]
+Variante Signa-Montelupo,[]
+Galleria Santa Lucia,[]
+Torino-Milano Via Novara-Vercelli,"['Novara', 'Rho', 'Settimo', 'Vercelli']"
+Padova-Venezia,['Padova']
+Raccordo Pisa-Roma-Roma-Fiumicino,[]
+Servizio Ferroviario Metropolitano di Palermo,['Carini']
+Lamezia Terme-Catanzaro Lido,['Lamezia Terme Nicastro']
+Milano Certosa-Milano Centrale,[]
+Potenza-Battipaglia,['Battipaglia']
+Pisa Centrale-Pisa Aeroporto,[]
+Faenza-Ravenna,['Faenza']
+Bologna-Ancona,"['Cesena', 'Faenza', 'Fano', 'Forli', 'Imola', 'Pesaro', 'Riccione', 'Rimini', 'Senigallia']"
+Rudolfiana,[]
+Venezia-Treviso Centrale,['Venezia Mestre']
+Vicenza-Padova,[]
+Roma-Fiumicino,[]
+Bivio Rogoredo-Pavia,['Pavia']
+Tortona-Arquata-Scrivia,[]
+Alessandria-Piacenza,"['Alessandria', 'Piacenza']"
+Arquata Scrivia-Ronco Scrivia,[]
+Tortona-Novi Ligure,[]
+Milano-Verona,"['Brescia', 'Viadana Bresciana']"
+Savona-San Giuseppe di Cairo,[]
+Palermo-Trapani Via Milo,[]
+Milano Rogoredo-Bivio Sordio,[]
+Palermo-Trapani,[]
+Novara-Oleggio-Arona,[]
+Verona-Vicenza,['Vicenza']
+Novara-Gozzano-Domodossola,['Novara']
+Bologna-Ferrara,['Ferrara']
+Gioia Tauro-Cinquefrondi,[]
+Paola-Castiglione Cosentino,[]
+Interconnessione Direttissima Orte Sud,[]
+Sassari-Alghero,[]
+Alessandria-Valenza-Mortara,[]
+Treviso Centrale-Udine,"['Conegliano', 'Pordenone', 'Udine']"
+Domodossola-Vogogna Ossola,[]
+Seregno-Bergamo,"['Bergamo', 'Seregno']"
+Bergamo-Treviglio,['Bergamo']
+Como San Giovanni-Albate Camerlata,[]
+Olmeneta-Cremona,[]
+Varese-Gallarate,['Varese']
+Mantova-Nogara,[]
+Ovada-Alessandria,['Alessandria']
+Padova-Castelfranco Veneto,[]
+Mortara-Novara,[]
+Treviso Centrale-Portogruaro,[]
+Grosseto-Civitavecchia-Roma,['Grosseto']
+Fidenza-Fornovo,[]
+Piacenza-Cremona,[]
+Chiasso-Como San Giovanni,[]
+Laveno Mombello-Oleggio,[]
+Treviglio-Olmeneta,['Crema']
+Oleggio-Varallo Pombia-Sesto Calende,[]
+Tronco S.N. Zona Industriale-Novara,[]
+Pavia-Bressana Bottarone,[]
+Castelfranco Veneto-Treviso Centrale,[]
+Bivio Sordio-Casalpusterlengo,['Lodi']
+Bivio Bressana-Broni,[]
+Passante Ferroviario,[]
+Vicenza-Cittadella,[]
+Codogno-Piacenza,[]
+Interconnessione Direttissima Arezzo Sud,[]

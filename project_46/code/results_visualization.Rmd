@@ -1,0 +1,127 @@
+```{r}
+library(ggplot2)
+library(RColorBrewer)
+library(rgl)
+library(igraph)
+library(gridExtra)
+library(grid)
+
+get_degree_distribution <- function(g) {
+  n <- vcount(g)
+  degrees <- degree(g)
+  if (n != 0) {
+    min_degree <- min(unique(degrees))
+    max_degree <- max(unique(degrees))
+    print(sprintf("The number of nodes is %s", n))
+    print(sprintf("The minimum degree is %s", min_degree))
+    print(sprintf("The maximum degree is %s", max_degree))
+    degs_freq <- data.frame()
+
+    for (i in seq(0, max_degree, 1)) {
+      freq <- sum(degrees == i)
+      degs_freq <- rbind(degs_freq, data.frame(degree = i, frequency = freq))
+    }
+    return(degs_freq)
+  } else {
+    print("Empty graph")
+  }
+}
+
+get_mixing_patterns <- function(g) {
+  n <- vcount(g)
+  if (n > 0) {
+    mix_res <- data.frame()
+    degrees <- degree(g)
+    max_degree <- max(unique(degrees))
+    print(sprintf("The number of nodes is %s", n))
+    print(sprintf("The maximum degree is %s", max_degree))
+    for(i in seq(1, n, 1)) {
+      node_degree <- degree(g, i)
+      neighbors_list <- neighbors(g, i)
+      neighbours_degrees <- degree(g, neighbors_list)
+      neighbors_mean_degree <- mean(neighbours_degrees)
+      mix_res <- rbind(mix_res, data.frame(node = i, degree = node_degree, nn_mean_degree = neighbors_mean_degree))
+    }
+    mix_res_bis <- data.frame()
+    for(k in seq(0, max_degree, 1)){
+      sub <- subset(mix_res, degree == k)
+      k_mean <- mean(sub$nn_mean_degree)
+      mix_res_bis <- rbind(mix_res_bis, data.frame(degree = k, nn_degree = k_mean))
+    }
+    return(mix_res_bis)
+  } else {
+    print("Empty graph")
+  }
+}
+```
+
+**NETWORK VISUALIZATION**
+
+
+```{r}
+nodes_file_path <- "IT_nodes.csv"   #node_ID,node_label,latitude,longitude,country_name,country_IS03
+edges_file_path <- "IT_edges.csv"   #nodeID_from,nodeID_to,node_label_from,node_label_to
+plot_title <- "IT railway network"
+plot_file_path <- "IT_network.pdf"
+```
+
+```{r}
+node_info <- read.csv(nodes_file_path, header = T)
+edge_info <- read.csv(edges_file_path, header = T)
+nodes <- node_info[, c("node_ID", "node_label", "longitude", "latitude")]
+edges <- data.frame(from = edge_info$nodeID_from, to = edge_info$nodeID_to)
+g <- graph_from_data_frame(edges, directed = F, vertices = as.character(nodes$node_ID))
+g <- simplify(g)
+V(g)$label <- nodes$node_label
+```
+
+```{r}
+layout <- matrix(0, vcount(g), 2)
+layout[, 1] <- nodes$longitude
+layout[, 2] <- nodes$latitude
+
+degrees <- degree(g)
+sizes <- degrees / max(degrees)
+sizes <- 5 * sizes + 1
+
+# Set the output to a PDF file
+pdf(plot_file_path, width = 10, height = 8)
+
+par(mfrow = c(1, 1), mar = c(2, 2, 3, 2))
+plot(g, layout = layout, vertex.label = '', vertex.label.color = '#3b3a3a',  vertex.color = '#00cf5a', vertex.frame.color = '#005525', edge.color = '#003a24', vertex.size = sizes, edge.width = 1, edge.curved = 0.3, bg = '#bebebe0c')
+title(main = plot_title, line = 0, font.main = 2, col.main = "#3b3a3a", adj = 0.5)
+grid()
+dev.off()
+```
+
+
+```{r}
+degs_freq <- get_degree_distribution(g)
+mixing <- get_mixing_patterns(g)
+# degree distribution plot
+subset_degs_freq <- subset(degs_freq, degree < 50)
+plot1 <-  ggplot(subset_degs_freq, aes(x = degree, y = frequency)) +
+  theme_bw() +
+  geom_bar( stat = "identity", alpha = 0.8, color = '#22ca8a', fill = '#22ca8a') +
+  labs(title = "IT degree distribution",
+      x = "degree k",
+      y = "frequency") +
+  theme(plot.title = element_text(hjust = 0.5, size = 10, face = "bold"))
+ggsave("IT_degree_distribution.pdf", plot1, width = 5, height = 3)
+# mixing patterns plot
+plot2 <-  ggplot(mixing, aes(x = degree, y = nn_degree)) +
+  theme_bw() +
+  scale_x_log10() +
+  scale_y_log10() +
+  geom_point(color = '#22ca8a') +
+  labs(title = "IT mixing patterns",
+       x = "degree k",
+       y = "neighbors mean degree") +
+  theme(plot.title = element_text(hjust = 0.5, size = 10, face = "bold"))
+ggsave("IT_mixing_patterns.pdf", plot2, width = 5, height = 3)
+
+# combined plot
+
+combined_plot <- grid.arrange(plot1, plot2, nrow = 2)
+ggsave("IT_analysis.pdf", combined_plot, width = 5, height = 5)
+```
