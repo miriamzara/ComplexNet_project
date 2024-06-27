@@ -1,0 +1,47 @@
+\chapter{Appendix}
+
+This section contains an elementary introduction to reaction-diffusion systems for pattern formation. 
+
+An activator- inhibitor system is described by the following set of equations:
+
+\begin{equation}
+\frac{\partial}{\partial t} u(\mathbf{x}, t) = f(u, v) + D_{\text{act}} \nabla^2 u(\mathbf{x}, t)
+\end{equation}
+
+\begin{equation}
+\frac{\partial}{\partial t} v(\mathbf{x}, t) = g(u, v) + D_{\text{inh}} \nabla^2 v(\mathbf{x}, t)
+\end{equation}
+
+where $u(\mathbf{x},\, t)$ is the local density of the activator and $v(\mathbf{x},\, t)$ is the local density of the inhibitor. $D_u$  and $D_v$ are the diffusion coefficients of the ligands or morphogens. The reactions are encoded in the functions $f(u,\,v)$ and $g(u,\,v)$. Various functional forms have been proposed for these functions. Qualitatively, those functions should describe the following facts:
+\begin{itemize}
+    \item the activator $u$ enhances its own production and the production of the inhibitor $v$;
+    \item the inhibitor $v$ suppresses the production of both the activator $u$ and itself,
+\end{itemize}
+Mathematically, these conditions translate to the following relations on the partial derivatives:
+\begin{equation*}
+    \begin{cases}
+        \frac{\partial f}{\partial u} > 0 \,,\quad \frac{\partial f}{\partial v} < 0 \\
+         \frac{\partial g}{\partial u} > 0 \,,\quad \frac{\partial g}{\partial v} < 0 \\       
+    \end{cases}
+\end{equation*}
+
+
+
+Among the best known.
+
+\begin{itemize}
+    \item original Turing (1952) linear functions $f(u,\,v)$:
+    \begin{equation}
+        \begin{cases}
+            f(u,\,v) = a_f\cdot u + b_f\cdot v + c_f \\
+            g(u,\,v) = a_g\cdot u + b_g\cdot v + c_g \\            
+        \end{cases}
+    \end{equation}
+    where $a$ coefficients are positive, $b$ coefficients are negative and for $c$, I dont know yet.
+
+
+    \item the Geiger-Meinhardt (1972)
+\end{itemize}
+
+
+\newpage
