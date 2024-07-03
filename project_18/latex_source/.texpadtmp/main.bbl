@@ -1,0 +1,32 @@
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Arianna~Bianchi(2019)]{altbook}
+Mark A. Lewis Yingfei~Yi Arianna~Bianchi, Thomas~Hillen.
+\newblock \emph{The Dynamics of Biological Systems}.
+\newblock Mathematics of Planet Earth. Springer Cham, 2019.
+\newblock \doi{10.1007/978-3-030-22583-4}.
+
+\bibitem[Murray(2003)]{murray}
+J.~D. Murray.
+\newblock \emph{Mathematical Biology II}.
+\newblock Interdisciplinary Applied Mathematics. Springer New York, NY, 3 edition, 2003.
+\newblock \doi{10.1007/b98869}.
+
+\bibitem[Nakao(2010)]{main_network}
+Mikhailov~A. Nakao, H.
+\newblock Turing patterns in network-organized activator–inhibitor systems.
+\newblock \emph{Nature Phys}, 2010.
+\newblock \doi{10.1038/nphys1651}.
+
+\bibitem[Shigeru~Kondo(2010)]{bio_article}
+Takashi~Miura Shigeru~Kondo.
+\newblock Reaction-diffusion model as a framework for understanding biological pattern formation.
+\newblock \emph{Science}, 2010.
+\newblock \doi{10.1126/science.1179047}.
+
+\end{thebibliography}
