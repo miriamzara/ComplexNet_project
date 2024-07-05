@@ -1,22 +1,60 @@
 \chapter{Appendix}
+\section{Turing Patterns in a continuous medium}
 
 This section contains an elementary introduction to reaction-diffusion systems for pattern formation. 
 
 An activator- inhibitor system is described by the following set of equations:
 
 \begin{equation}
-\frac{\partial}{\partial t} u(\mathbf{x}, t) = f(u, v) + D_{\text{act}} \nabla^2 u(\mathbf{x}, t)
-\end{equation}
-
-\begin{equation}
+\begin{cases}
+\frac{\partial}{\partial t} u(\mathbf{x}, t) = f(u, v) + D_{\text{act}} \nabla^2 u(\mathbf{x}, t) \\
 \frac{\partial}{\partial t} v(\mathbf{x}, t) = g(u, v) + D_{\text{inh}} \nabla^2 v(\mathbf{x}, t)
+\end{cases}
 \end{equation}
 
-where $u(\mathbf{x},\, t)$ is the local density of the activator and $v(\mathbf{x},\, t)$ is the local density of the inhibitor. $D_u$  and $D_v$ are the diffusion coefficients of the ligands or morphogens. The reactions are encoded in the functions $f(u,\,v)$ and $g(u,\,v)$. Various functional forms have been proposed for these functions. Qualitatively, those functions should describe the following facts:
+where $u(\mathbf{x},\, t)$ is the local density of the activator and $v(\mathbf{x},\, t)$ is the local density of the inhibitor. $D_u$  and $D_v$ are the diffusion coefficients of the ligands or morphogens. The reactions are encoded in the functions $f(u,\,v)$ and $g(u,\,v)$. There are several choices for $f(u,\,v)$ and $g(u,\,v)$ that are able to generate patterns. Among the most studied are the Schnakenberg (1979) and the Gieger-Meinhardt (1972) kinetics (see \citep{murray}).
+Whatever kinetics we might choose, it needs to meet the following basic requirements:
+\begin{enumerate}
+	\item Existence of a homogeneous, linearly stable equilibrium $(\overline{u},\, \overline{v})$ in absence of diffusion:
+		$$
+		\centering
+		\begin{pmatrix}
+			u(\mathbf{x},\, t) \\
+			v(\mathbf{x},\, t)
+		\end{pmatrix} = 
+		\begin{pmatrix}
+			\overline{u} \\
+			\overline{v}
+		\end{pmatrix}
+		\quad \text{where} \quad f(\overline{u}\,, \overline{v}) = g(\overline{u}\,, \overline{v})=0 \quad \text{and, given that}
+		$$
+		$$
+		 \quad J_{F}(\overline{u}\,, \overline{v}) := 
+		\begin{pmatrix}
+ 			f_u & f_v \\
+ 			g_u & g_v
+ 		\end{pmatrix}, \quad
+ 		\begin{cases}
+ 			\text{tr}(J_F)= f_u + g_v < 0\\
+ 			\text{det}(J_F) = f_u\cdot g_v f_v\cdot g_u>0
+ 		\end{cases}
+		\text{(linear stability)}
+		$$
+	\item Correct behaviour in the neighborhood of the fixed point $(\overline{u},\, \overline{v})$:
+	\item Diffusion-Driven Instability
+\end{enumerate}
+ Qualitatively, those functions should describe the following facts:
 \begin{itemize}
     \item the activator $u$ enhances its own production and the production of the inhibitor $v$;
     \item the inhibitor $v$ suppresses the production of both the activator $u$ and itself,
 \end{itemize}
+
+\begin{figure*}
+	\centering
+	\includegraphics[width = 0.6\textwidth]{images/diagram.jpeg}
+	\caption{A state diagram of the reactions}
+\end{figure*}
+
 Mathematically, these conditions translate to the following relations on the partial derivatives:
 \begin{equation*}
     \begin{cases}
@@ -63,23 +101,7 @@ Re\{\lambda_i\} <0 \iff 	J_{F}(\overline{u}\,, \overline{v})< 0\quad  \text{(neg
 		f_u\cdot g_v - f_v\cdot g_u>0
 	\end{cases}
 $$
-Various functional forms for $F(u,v)$ have been proposed. Among the best known:
 
-\begin{itemize}
-    \item original Turing (1952) linear functions $f(u,\,v)$:
-    \begin{equation}
-        \begin{cases}
-            f(u,\,v) = a_f\cdot u + b_f\cdot v + c_f \\
-            g(u,\,v) = a_g\cdot u + b_g\cdot v + c_g \\            
-        \end{cases}
-    \end{equation}
-    where $a$ coefficients are positive, $b$ coefficients are negative and for $c$, I dont know yet.
-
-
-    \item the Geiger-Meinhardt (1972) 
-
-
-\end{itemize}
 
 
 \begin{tikzpicture}
