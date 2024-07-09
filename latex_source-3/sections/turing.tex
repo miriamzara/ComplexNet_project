@@ -182,7 +182,25 @@ We require:
         [\epsilon\,(g_v +\sigma\,f_u)]^2 \geq 4\,\epsilon^2\,\sigma\,\text{det}[J] \\
     \end{cases}
 \end{equation*} 
-From the first one, we notice that there exists a minimum value threshold for $\sigma > \sigma_{min}= \frac{|g_v|}{f_u}$. Also, since $\text{tr}\,[J]=(-|g_v| +f_u)<0$, then $\sigma_{min}> 1$: a necessary (but still not sufficient) condition for pattern initiation is that the inhibitor diffuses faster than the activator.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{latex_source/images/turing/key_mechanism.png}
+    \label{fig:key}
+    \caption{{\small Graph 1 shows the initial condition of the system. Suppose that the concentration of the
+activator is relatively higher than in other regions by random fluctuation. By the
+self-enhancing property of the activator, the concentration of activator increases at the
+center region (graph2), followed by the increase of inhibitor at the neighboring region A.
+As the diffusion rate of inhibitor is much larger than that of the activator, substantial
+amounts of inhibitor move toward the lateral regions. This depresses the activator
+function, resulting in the decrease of the activator concentration there (graph3).
+Decrease of activator causes the decrease of inhibitor in the wider region (graph4). At
+the region B, as inhibitor concentration is gotten lower, activator becomes relatively
+dominant than inhibitor. This situation is enough to start the local self activation at
+region B (graph5). \parencite[Figure taken from][Supplementary Information]{bio_article}. }}
+   \label{fig:key}
+\end{figure}
+\noindent 
+From the first one, we notice that there exists a minimum value threshold for $\sigma > \sigma_{min}= \frac{|g_v|}{f_u}$. Also, since $\text{tr}\,[J]=(-|g_v| +f_u)<0$, then $\sigma_{min}> 1$: a necessary (but still not sufficient) condition for pattern initiation is that the inhibitor diffuses faster than the activator. Indeed, this difference between the diffusion constants of the two species is key to have patterns induced by diffusion (see Figure \ref{fig:key}.)
 \begin{equation*}
     \begin{cases}
         \sigma > \sigma_{min} >1  \\
@@ -276,49 +294,74 @@ a BA with $N=200$ and $\<k\> = 10$. Nodes nodes are ranked by their degree. With
 \nocite{murray}
 \nocite{altbook}
 \newpage
-\chapter*{Appendix}
+\subsection*{Appendix}
 \addcontentsline{toc}{section}{Appendix}
-\textbf{Linear Stability of a 2x2 system}
+\textbf{Linear Stability of a 2x2 autonomous system}
 \label{app:bifurcation_diagram}
- The linear stability requirement is satisfied if the jacobian matrix of $F(u,v) = (f(u,v), g(u,v))$ evaluated at the fixed point $(\overline{u}\,, \overline{v})$, $J_F(\overline{u},\, \overline{v})$, has all eigenvalues with negative real parts $\mathcal{R}e(\lambda_i)<0$. Say 
- \begin{equation*}
- 		J_{F}(\overline{u}\,, \overline{v}) := \begin{pmatrix}
- 			f_u & f_v \\
- 			g_u & g_v
- 		\end{pmatrix}
- \end{equation*}
-Then
+Say $(\overline{x},\, \overline{y})\in \mathbb{R}^2$ is a fixed point (or equilibrium) of the autonomous system 
+\begin{equation*}
+    \begin{pmatrix}
+        \dot{x}(t) \\
+        \dot{y}(t) \\
+    \end{pmatrix}
+    = 
+        \begin{pmatrix}
+        f[x(t),\, y(t)] \\
+        g[x(t),\, y(t)] \\
+    \end{pmatrix}
+\end{equation*}
+which, namely, means that $f(\overline{x},\, \overline{y}) = g(\overline{x},\, \overline{y}) = 0$. Now we want to study how the system evolves if a small perturbation $(\delta x,\, \delta y)$ is added to the equilibrium. We can linearize the system:
+\begin{equation*}
+    \begin{pmatrix}
+        \delta\,\dot{x}(t) \\
+        \delta\,\dot{y}(t) \\
+    \end{pmatrix}
+    = 
+        \begin{pmatrix}
+        \frac{\delta\,f}{\delta x}|_{(\overline{x},\,\overline{y})} & \frac{\delta\,f}{\delta y}|_{(\overline{x},\,\overline{y})}\\
+        \frac{\delta\,g}{\delta x}|_{(\overline{x},\,\overline{y})} & \frac{\delta\,g}{\delta y}|_{(\overline{x},\,\overline{y})} \\
+    \end{pmatrix}
+    \cdot
+        \begin{pmatrix}
+        \delta\,x(t) \\
+        \delta\,y(t) \\
+    \end{pmatrix}
+    +
+    o(||(\delta\,x, \delta\,y)||)
+\end{equation*}
+ The latter is a homogeneous linear system with general solution:
+\begin{equation*}
+        \begin{pmatrix}
+        x(t) \\
+        y(t) \\
+    \end{pmatrix}
+     = 
+     \alpha_1 \mathbf{v}_1\, e^{\lambda_1\, t} + \alpha_2 \mathbf{v}_2\, e^{\lambda_2\, t} 
+\end{equation*}
+where $\lambda_1,\, \lambda_2$ are the eigenvalues of the jacobian and $\mathbf{v}_1\, \mathbf{v}_2$ are the corresponding eigenvectors, and $\alpha_1, \alpha_2$ are coefficients determined by the initial condition. The eigenvalues of a $2\cdot 2$ matrix can be both real or complex cooniugates ($\lambda_1 = \lambda, \, \lambda_2 = \overline{\lambda}$). Wether the amplitude of the perturbation dies out exponentially or explodes depends on the sign of $\mathcal{R}e\{\lambda\}$. The linear stability requirement is
 $$
-Re\{\lambda_i\} <0 \iff 	J_{F}(\overline{u}\,, \overline{v})< 0\quad  \text{(neg. def.)} \iff \begin{cases}
-		\text{tr}(J_F) < 0 \\
-		\text{det}(J_F)>0
-	\end{cases}
-	\iff \begin{cases}
-		f_u + g_v < 0 \\
-		f_u\cdot g_v - f_v\cdot g_u>0
-	\end{cases}
+\mathcal{R}e\{\lambda\} <0 \quad \text{for both} \, \lambda\text{'s}
 $$
-
-
-
-\begin{tikzpicture}
-    % Set the size of the grid and the colors
-    \fill[red!20] (-4,0) rectangle (4,4);
-    \fill[blue!20] (-4,-4) rectangle (4,0);
-    
-    % Draw the axes
-    \draw[->] (-4,0) -- (4,0) node[right] {$\det A$};
-    \draw[->] (0,-4) -- (0,4) node[above] {$\operatorname{tr} A$};
-    
-    % Draw the parabola
-    \draw[thick, domain=0:4] plot (\x, {sqrt(\x*4)}) node[right] {};
-    \draw[thick, domain=0:4] plot (\x, {-sqrt(\x*4)}) node[right] {};
-    
-    % Stability and Instability regions
-    \node[blue] at (-3,-1) {stability};
-    \node[red] at (3,3) {instability};
-    
-    % Label for the critical point
-    \node at (2, -2) {$\Delta^2=0$};
-    \node at (2, -2.5) {$\det A = \left(\frac{\operatorname{tr} A}{2}\right)^2$};
-\end{tikzpicture}
+The eigenvalues $\lambda_1,\, \lambda_2$ are the roots of the characteristic polynomial of the jacobian $J$:
+\begin{equation*}
+    p_J(\lambda) = (\lambda - \lambda_1)\cdot (\lambda - \lambda_2) = \lambda^2 - \text{tr}[J]\cdot\lambda + \text{det}[J]
+\end{equation*}
+\begin{minipage}{0.5\textwidth}
+Then we have the following cases, depending on the discriminant $\Delta^2 = \text{tr}[J]^2 - 4\,\text{det}[J]$:
+\begin{equation*}
+    \begin{cases}
+        \Delta^2 > 0: \quad \lambda_1,\, \lambda_2  =  \frac{\text{tr}[J] \pm \Delta }{2} \quad \text{real, distinct} \\
+        \Delta^2 = 0: \quad \lambda_1,= \lambda_2 = \frac{\text{tr}[J]}{2} \in \mathbb{R} \\
+        \Delta^2 <0: \quad \lambda_1,= \lambda_2  = \alpha \pm i \beta \in \mathbb{C}
+    \end{cases}
+\end{equation*}
+One can easily see from the polynomial $p_J(\lambda)$ that in the case $\Delta^2 \geq 0$, the requirement that both roots are negative is satisfied if and only if $\text{tr}[J]<0,\, \text{det}[J] >0$. In the case $\Delta <0$, we have obligatorily $\text{det}[J] = \lambda \cdot \overline{\lambda} = |\lambda|^2 >0$, and $\text{tr}[J]= 2\cdot \mathcal{R}e(\lambda)$. Then again the requirement holds if and only if $\text{tr}[J]< 0$.
+\end{minipage}
+\hfill
+\definecolor{mygreen}{RGB}{38, 181, 124}
+\begin{minipage}{0.4\textwidth}
+\centering
+    \includegraphics[width=\linewidth]{latex_source/images/turing/bifurcation.jpeg}
+    \captionof{figure}{Bifurcation diagram for a $2\cdot\,2$ homogeneous system. $(\pm,\,\pm)$ are the signs of $\mathcal{R}e\{\lambda\}$ in the various regions of the (tr[J], det[J]) plane. \textcolor{mygreen}{Green} marks the stability region and \textcolor{Grey}{Grey} marks the region where eigenvalues are complex.}
+    \label{fig:bifurcation}
+\end{minipage}
