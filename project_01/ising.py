@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from scipy.signal import find_peaks
+from scipy.sparse import csr_matrix
 
 def compute_energy(adjacency_matrix, state, J = 1.0, h = 0.0):
     energy = -h * np.sum(state)
@@ -44,32 +45,59 @@ def simulate_ising_fixed_temp(adjacency_matrix, T, num_steps, n_snapshots = 0, J
     else:
         return initial_state, state, df
 
-def simulate_ising(adjacency_matrix, T_i, T_f, t_points, equilibration_steps, sweep_steps, J = 1.0, h = 0.0):
+def simulate_ising(adjacency_matrix, T_i, T_f, t_points, equilibration_steps, sweep_steps, filename, current_state = False, J = 1.0, h = 0.0):
+    adjacency_matrix_sparse = csr_matrix(adjacency_matrix)
+    print("sparsified matrix")
     if T_i > T_f:
         print("Error: T_i > T_f")
         return
     num_nodes = len(adjacency_matrix[0])
     temperatures = np.linspace(T_i, T_f, t_points)
     data = np.zeros((t_points, 9))
+    # state is initialized at random for the lowest temperature, then at
+    # every new temperature the metropolis starts with the euqilibrated state of the
+    # last temperature. this should speed up the equilibration process.
+    if current_state == True:
+        state = np.loadtxt('temp_state.txt', delimiter=',')
+    else:
+        state = np.random.choice([-1, 1], size = num_nodes)
     for t, T in enumerate(temperatures):
-        if t % 10 == 0:
-            print(f"temperature {T}, point {t + 1}/{t_points}")
         energies = np.zeros(sweep_steps)
         magnetizations = np.zeros(sweep_steps)
-        initial_state = np.random.choice([-1, 1], size = num_nodes)
-        state = initial_state.copy()
         for step in range(equilibration_steps):
             for _ in range(num_nodes):
                 i = np.random.randint(num_nodes)
-                delta_E = 2 * state[i] * (h + J * sum(adjacency_matrix[i, j] * state[j] for j in range(len(state)) if adjacency_matrix[i, j] != 0))
+                # Get the indices of the neighbors of node i
+                neighbors = adjacency_matrix_sparse.indices[adjacency_matrix_sparse.indptr[i]:adjacency_matrix_sparse.indptr[i + 1]]
+                
+                # Calculate the sum over the neighbors
+                neighbor_sum = sum(adjacency_matrix_sparse[i, j] * state[j] for j in neighbors)
+                
+                delta_E = 2 * state[i] * (h + J * neighbor_sum)
                 if delta_E < 0 or np.random.rand() < np.exp(-delta_E / T):
                     state[i] *= -1
+            #for _ in range(num_nodes):
+            #    i = np.random.randint(num_nodes)
+            #    delta_E = 2 * state[i] * (h + J * sum(adjacency_matrix[i, j] * state[j] for j in range(len(state)) if adjacency_matrix[i, j] != 0))
+            #    if delta_E < 0 or np.random.rand() < np.exp(-delta_E / T):
+            #        state[i] *= -1
         for s in range(sweep_steps):
             for _ in range(num_nodes):
                 i = np.random.randint(num_nodes)
-                delta_E = 2 * state[i] * (h + J * sum(adjacency_matrix[i, j] * state[j] for j in range(len(state)) if adjacency_matrix[i, j] != 0))
+                # Get the indices of the neighbors of node i
+                neighbors = adjacency_matrix_sparse.indices[adjacency_matrix_sparse.indptr[i]:adjacency_matrix_sparse.indptr[i + 1]]
+                
+                # Calculate the sum over the neighbors
+                neighbor_sum = sum(adjacency_matrix_sparse[i, j] * state[j] for j in neighbors)
+                
+                delta_E = 2 * state[i] * (h + J * neighbor_sum)
                 if delta_E < 0 or np.random.rand() < np.exp(-delta_E / T):
                     state[i] *= -1
+            #for _ in range(num_nodes):
+            #    i = np.random.randint(num_nodes)
+            #    delta_E = 2 * state[i] * (h + J * sum(adjacency_matrix[i, j] * state[j] for j in range(len(state)) if adjacency_matrix[i, j] != 0))
+            #    if delta_E < 0 or np.random.rand() < np.exp(-delta_E / T):
+            #        state[i] *= -1
             energies[s] = compute_energy(adjacency_matrix, state)
             magnetizations[s] = np.sum(state)/num_nodes
         energy = np.mean(energies)
@@ -81,8 +109,15 @@ def simulate_ising(adjacency_matrix, T_i, T_f, t_points, equilibration_steps, sw
         susceptibility = np.var(magnetizations) / T
         std_susceptibility = susceptibility * np.sqrt(2 / sweep_steps)
         data[t] = [T, energy, std_energy, np.abs(magnetization), std_magnetization,  specific_heat, std_specific_heat, susceptibility, std_susceptibility]
-    df = pd.DataFrame(data, columns=['temperature', 'energy', 'std_energy' ,'abs_magnetization', 'std_magnetization', 'heat', 'std_heat', 'susceptibility', 'std_susceptibility'])
-    return df
+        if t % 2 == 0:
+            print(f"temperature {T}, point {t + 1}/{t_points}")
+            df = pd.DataFrame(data, columns=['temperature', 'energy', 'std_energy' ,'abs_magnetization', 'std_magnetization', 'heat', 'std_heat', 'susceptibility', 'std_susceptibility'])
+            df.to_csv(filename)
+            np.savetxt('temp_state.txt', state, delimiter=',')
+            print(f'saved progress in df {filename} and current state in temp_state.txt')
+    df = pd.DataFrame(data, columns=['temperature', 'energy', 'std_energy' ,'abs_magnetization', 'std_magnetization', 'heat', 'std_heat', 'susceptibility', 'std_susceptibility']) 
+    df.to_csv(filename)   
+    return
 
 
 def estimate_temperature(df):
