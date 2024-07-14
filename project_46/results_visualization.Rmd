@@ -1,0 +1,252 @@
+--------------------------------
+--------------------------------
+Network Visualization 
+owner: Zara Miriam
+last modified: 07/06/2024
+--------------------------------
+--------------------------------
+**libraries import and helper functions definition**
+```{r}
+library(ggplot2)
+library(RColorBrewer)
+library(igraph)
+library(gridExtra)
+library(grid)
+library(grDevices) # For adjustcolor function
+
+get_degree_distribution <- function(g) {
+  n <- vcount(g)
+  degrees <- degree(g)
+  if (n != 0) {
+    min_degree <- min(unique(degrees))
+    max_degree <- max(unique(degrees))
+    print(sprintf("The number of nodes is %s", n))
+    print(sprintf("The minimum degree is %s", min_degree))
+    print(sprintf("The maximum degree is %s", max_degree))
+    degs_freq <- data.frame()
+
+    for (i in seq(0, max_degree, 1)) {
+      freq <- sum(degrees == i)
+      degs_freq <- rbind(degs_freq, data.frame(degree = i, frequency = freq))
+    }
+    return(degs_freq)
+  } else {
+    print("Empty graph")
+  }
+}
+
+get_mixing_patterns <- function(g) {
+  n <- vcount(g)
+  if (n > 0) {
+    mix_res <- data.frame()
+    degrees <- degree(g)
+    max_degree <- max(unique(degrees))
+    print(sprintf("The number of nodes is %s", n))
+    print(sprintf("The maximum degree is %s", max_degree))
+    for(i in seq(1, n, 1)) {
+      node_degree <- degree(g, i)
+      neighbors_list <- neighbors(g, i)
+      neighbours_degrees <- degree(g, neighbors_list)
+      neighbors_mean_degree <- mean(neighbours_degrees)
+      mix_res <- rbind(mix_res, data.frame(node = i, degree = node_degree, nn_mean_degree = neighbors_mean_degree))
+    }
+    mix_res_bis <- data.frame()
+    for (k in seq(0, max_degree, 1)){
+      sub <- subset(mix_res, degree == k)
+      k_mean <- mean(sub$nn_mean_degree)
+      mix_res_bis <- rbind(mix_res_bis, data.frame(degree = k, nn_degree = k_mean))
+    }
+    return(mix_res_bis)
+  } else {
+    print("Empty graph")
+  }
+}
+
+
+plot_city_network <- function(graph, layout, title = ' ', save_as_pdf = FALSE, file_path = 'file.pdf') {
+  deg <- degree(graph)
+  V(graph)$color <- ifelse(deg > median(deg), "tomato", "#3eb6e6")
+  V(graph)$size <- deg * 0.5 + 0.5
+  plot_labels <- ifelse(deg > max(deg) - 1, V(graph)$label, "")
+  E(graph)$color <- "#ffffff"
+  E(graph)$width <- 1
+  if (save_as_pdf == TRUE) {
+    pdf(file_path)
+    par(bg = "#d6d5d5")
+    par(mar = c(1, 1, 2, 1)) #bottom, left, top, right
+    plot(graph, layout = layout,
+         vertex.label = plot_labels,
+         vertex.label.cex = 0.8,
+         vertex.label.dist = 0.6,
+         vertex.label.color = "black",
+         edge.curved = 0.3,
+         main = "",
+         col.main = "#ffffff",
+         cex.main = 2,
+         font.main = 1, # 1= plain, 2= bold, 3=italic, 4= bold italic
+         vertex.frame.color = "NA")
+    # Add legend
+    legend_bg <- adjustcolor("white", alpha.f = 0.6)
+    legend("bottomleft",
+           legend = c("Degree > Median",
+                      "Degree <= Median",
+                      "Label shown if deg > max(deg) - 1",
+                      "V(graph)$size <- deg * 0.5 + 0.5"),
+           col = c("tomato", "#3eb6e6", NA, NA),
+           pch = c(21, 21, NA),
+           pt.bg = c("tomato", "#3eb6e6", NA, NA),
+           pt.cex = 1.5,
+           bty = "o",
+           bg = legend_bg,
+           box.col = "black",
+           title = "Vertex Color Legend",
+           text.col = c("black", "black", "black", "black"),
+           x.intersp = c(1, 1, 0, 0),
+           y.intersp = 1.5)
+    # Add title within box
+    # 1: left, 2: right, 3: bottom, 4: top 
+    rect(par("usr")[1] + 0.2* diff(par("usr")[1:2]), par("usr")[4] - 0.048 * diff(par("usr")[3:4]),
+         par("usr")[2] - 0.2* diff(par("usr")[1:2]), par("usr")[4], col = "white", border = "black")
+    text(mean(par("usr")[1:2]), par("usr")[4] - 0.025 * diff(par("usr")[3:4]),
+         labels = title, col = "black", cex = 1.2, font = 1, xpd = TRUE)
+    # Enable grid
+    grid(nx = 10, ny = 10, col = "white", lty = "dotted", lwd = 1.5)
+    dev.off()
+  } else {
+    plot(graph, layout = layout, vertex.label = plot_labels, vertex.label.cex = 0.5, vertex.label.color = '#3b3a3a', edge.curved = 0.3, main = title, cex.main = 2, vertex.frame.color = NA)
+    grid()
+  }
+}
+
+
+plot_raw_network <- function(graph, layout, title = ' ', save_as_pdf = FALSE, file_path = 'file.pdf') {
+  deg <- degree(graph)
+  V(graph)$color <-  "black"
+  V(graph)$size <- deg * 0.5
+  E(graph)$color <- "black"
+  E(graph)$width <- 0.1
+  if (save_as_pdf == TRUE) {
+    pdf(file_path)
+    par(bg = "white")
+    par(mar = c(1, 1, 2, 1)) #bottom, left, top, right
+    plot(graph, layout = layout,
+         vertex.label = NA,
+         vertex.label.color = NA,
+         edge.curved = 0,
+         main = title,
+         col.main = "#474747",
+         cex.main = 2,
+         font.main = 1, # 1= plain, 2= bold, 3=italic, 4= bold italic
+         vertex.frame.color = "NA")
+    # Add the main title with custom color
+    grid(nx = 10, ny = 10, col = "#000000", lty = "dotted")
+    dev.off()
+  } else {
+    plot(graph, layout = layout,  vertex.label.color = '#3b3a3a', edge.curved = 0, main = title, cex.main = 2, vertex.frame.color = NA)
+    grid()
+  }
+}
+
+```
+
+**RAW NETWORK VISUALIZATION**
+
+```{r}
+nodes_file_path <- "new_outputs/UA_raw_nodes.csv"   #node_ID,node_label,latitude,longitude,country_name,country_IS03
+edges_file_path <- "new_outputs/UA_raw_edges.csv"   #nodeID_from,nodeID_to,node_label_from,node_label_to
+plot_title <- "Raw data network (UA, Ukraine)"
+scatterplot_file_path <- "new_outputs/raw_UA_network.pdf"
+
+
+node_info <- read.csv(nodes_file_path, header = T)
+edge_info <- read.csv(edges_file_path, header = T)
+nodes <- node_info[, c("node_ID", "longitude", "latitude")]
+edges <- data.frame(from = edge_info$nodeID_from, to = edge_info$nodeID_to)
+g <- graph_from_data_frame(edges, directed = F, vertices = nodes$node_ID)
+g <- simplify(g) 
+
+
+layout <- matrix(0, vcount(g), 2)
+layout[, 1] <- nodes$longitude
+layout[, 2] <- nodes$latitude
+plot_raw_network(g, layout, title = plot_title, save_as_pdf = TRUE, file_path = scatterplot_file_path)
+```
+
+
+**CITY NETWORK VISUALIZATION**
+
+
+**plot of network**
+```{r}
+nodes_file_path <- "new_outputs/IT_nodes.csv"   #node_ID,node_label,latitude,longitude,country_name,country_IS03
+edges_file_path <- "new_outputs/IT_edges.csv"   #nodeID_from,nodeID_to,node_label_from,node_label_to
+plot_title <- "Ukraine (UA) cities/railways network"
+scatterplot_file_path <- "new_outputs/UA_network.pdf"
+analysis_file_path <- "new_outputs/UA_analysis.pdf"
+analysis_title_1 <- "UA degree distribution"
+analysis_title_2 <- "UA mixing patterns"
+
+
+node_info <- read.csv(nodes_file_path, header = T)
+edge_info <- read.csv(edges_file_path, header = T)
+nodes <- node_info[, c("node_ID", "node_label", "longitude", "latitude")]
+edges <- data.frame(from = edge_info$nodeID_from, to = edge_info$nodeID_to)
+g <- graph_from_data_frame(edges, directed = F, vertices = nodes$node_ID)
+g <- simplify(g) #remove multiple edges, if present
+V(g)$label <- nodes$node_label # assign node labels
+
+
+layout <- matrix(0, vcount(g), 2)
+layout[, 1] <- nodes$longitude
+layout[, 2] <- nodes$latitude
+plot_city_network(g, layout, title = plot_title, save_as_pdf = TRUE, file_path = scatterplot_file_path)
+```
+
+**degrees and mixing patterns**
+```{r}
+nodes_file_path <- "new_outputs/NL_nodes.csv"   #node_ID,node_label,latitude,longitude,country_name,country_IS03
+edges_file_path <- "new_outputs/NL_edges.csv"   #nodeID_from,nodeID_to,node_label_from,node_label_to
+analysis_file_path <- "new_outputs/NL_analysis.pdf"
+analysis_title_1 <- "NL degree distribution"
+analysis_title_2 <- "NL mixing patterns"
+
+
+
+node_info <- read.csv(nodes_file_path, header = T)
+edge_info <- read.csv(edges_file_path, header = T)
+nodes <- node_info[, c("node_ID", "node_label", "longitude", "latitude")]
+edges <- data.frame(from = edge_info$nodeID_from, to = edge_info$nodeID_to)
+g <- graph_from_data_frame(edges, directed = F, vertices = nodes$node_ID)
+g <- simplify(g) #remove multiple edges, if present
+degs_freq <- get_degree_distribution(g)
+mixing <- get_mixing_patterns(g)
+
+
+subset_degs_freq <- subset(degs_freq, degree < 50)
+plot1 <-  ggplot(subset_degs_freq, aes(x = degree, y = frequency)) +
+  theme_bw() +
+  geom_bar( stat = "identity", alpha = 0.7, color = '#6ad5ed', fill = '#6ad5ed') +
+  labs(title = analysis_title_1,
+      x = "degree k",
+      y = "frequency") +
+  theme(plot.title = element_text(hjust = 0.5, size = 14, face = "plain"),
+        axis.text.x = element_text(size = 10, colour = 'black'),
+        axis.text.y = element_text(vjust = 0.2, size = 10, colour = 'black'),
+        axis.ticks = element_line(size = 0.4))
+
+
+plot2 <-  ggplot(mixing, aes(x = degree, y = nn_degree)) +
+  theme_bw() +
+  geom_point(color = 'tomato', size = 3) +
+  geom_line(color = 'tomato', linewidth = 2, alpha = 0.5) +
+  labs(title = analysis_title_2,
+       x = "degree k",
+       y = "neighbors mean degree") +
+  theme(plot.title = element_text(hjust = 0.5, size = 14, face = "plain"),
+        axis.text.x = element_text(size = 10, colour = 'black'),
+        axis.text.y = element_text(vjust = 0.2, size = 10, colour = 'black'),
+        axis.ticks = element_line(size = 0.4))
+
+combined_plot <- grid.arrange(plot1, plot2, nrow = 1, ncol = 2)
+ggsave(analysis_file_path, combined_plot, width = 5, height = 3)
+```
