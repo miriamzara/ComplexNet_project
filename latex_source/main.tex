@@ -25,18 +25,13 @@
 % Subsection
 \titleformat{\subsection}[hang]{\large\bfseries}{\textcolor{unipd}{\thesubsection}\hsp\textcolor{gray75}{|}\hsp}{0pt}{\large\bfseries\textcolor{gray25}}[\color{unipd}{}]
 
-
 \input{sections/ising.tex}
 \input{sections/turing.tex}
 \input{sections/voter.tex}
 \input{latex_source/sections/railways.tex}
 
-
-
-
-
 \chapter{Bibliography}
-\begin{group}
+{\small
 \let\clearpage\relax
 \phantomsection
 \defbibheading{myheading}[My Bibliography]{%
@@ -47,17 +42,13 @@ keyword={ising},
 heading=myheading,
 title={Task 01: Ising Model}
 ]
-
 \printbibliography[
 keyword={turing},
 heading=myheading,
 title={Task 18: Turing Patterns}
 ]
-\medskip
-\newline
-\noindent
 \textbf{A note to the bibliography.}
-This assignment specifically focuses on Turing patterns in \textit{networks}, with recommendation to replicate the findings presented in \cite{main_network}. However, for someone unfamiliar with Turing patterns, a few preliminary read may be necessary. Article \cite{bio_article}, targeted at biologists, offers an intuitive overview of the concept with minimal mathematical details. To delve deeper into the mathematical foundations, \cite[][\textit{Chapter 2: Spatial Pattern Formation with Reaction Diffusion Systems}]{murray} provides a comprehensive and detailed explanation of Turing Patterns in a continuous medium. Another valuable resource is \cite[][\textit{Chapter 7: The Turing Model for Biological Pattern Formation}]{altbook}, which, while shorter than Murray’s chapter, still offers insightful observations.   
+This assignment specifically focuses on Turing patterns in \textit{networks}. However, for someone unfamiliar with Turing patterns, a few preliminary read may be useful. Article \cite{bio_article}, targeted at biologists, offers an intuitive overview of the concept with minimal mathematical details. To better understand the mathematical side, \cite[][\textit{Chapter 2: Spatial Pattern Formation with Reaction Diffusion Systems}]{murray} provides a comprehensive and detailed explanation of Turing Patterns in a continuous medium. Another valuable resource is \cite[][\textit{Chapter 7: The Turing Model for Biological Pattern Formation}]{altbook}, which, while shorter than Murray’s chapter, still offers insightful observations.   
 
 \printbibliography[
 keyword={voter},
@@ -70,10 +61,7 @@ keyword={railways},
 heading=myheading,
 title={Task 46: European transportation network II}
 ]
-
-
-
-\end{group}
+}
 \end{document}
 
 

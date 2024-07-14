@@ -1,6 +1,6 @@
 \chapter{Task 01: Ising Model}
 \section{Task Description}
-The aim of this task is to simulate the Ising dynamics on complex networks.
+The aim of this task is to simulate the Ising dynamics on complex networks. 
 \section{Mathematical Model}
 The ferromagnetic Ising model on a network of $N$ nodes and adiacency matrix $A$ is described in its most general form by the hamiltonian:
 \begin{equation*}
@@ -25,11 +25,11 @@ M &= \mathbbm{E}\left[\sum_{i} s_i \right] \equiv \left( \frac{\partial F}{\part
 \end{align*}
 
 
-By means of a mean field approximation, it is possible to show that the existence of a disordered phase depends on the moments $\<k^n\>$ of the degree distribution. Specifically, a homogeneous mean field approximation yields the critical temperature
+\noindent By means of a mean field approximation, it is possible to show that the existence of a disordered phase depends on the moments $\left\langle k^n\right\rangle$ of the degree distribution. Specifically, a homogeneous mean field approximation yields the critical temperature
 \begin{equation} \label{eq:hom_mean_field}
     T_C^{\text{hom. MF}} =\,\left\langle k \right \rangle
 \end{equation}
-(see appendix [App \ref{app:mean_field}] for complete derivation), while the more accurate heterogeneous (or degree-based) mean field approximation yields:
+ ([Appendix \ref{app:mean_field}] contains the explicit calculations for this formula), while the more accurate heterogeneous (or degree-based) mean field approximation yields:
 \begin{equation} \label{eq:het_mean_field}
     T_C^{\text{het. MF}} =\,\frac{\left\langle k^2 \right \rangle}{\left\langle k \right \rangle}
 \end{equation}
@@ -46,7 +46,7 @@ $$
 which is zero in the disordered phase ($T>T_C$), non-zero in the ferromagnetic  phase $(T<T_C)$ and monotonically decreasing with temperature. Also, the energy $E(T)$ is expected to have an inflection point at $T=T_C$, and the response function $C$ and $\chi$ are both supposed to peak at $T=T_C$.
 
 \section{Numerical Simulations}
-For simulations, I chose to focus on scale free networks $P(k) \sim k^{-\gamma}$, in particular the Barabasi - Albert (BA) network of parameters $N,\, m$ where N is the number of nodes and $m$ is the number of links attacched for each new node. This choice was motivated by the fact that article \cite{numeric_ising} could be used for comparison. The degree distribution for such a network is asymptotically given by $P(k) \sim k^{-3}$. Since one can only deal with finite size networks, finite size effects must be taken into account in the mean field formulas $\ref{eq:hom_mean_field}$ and $\ref{eq:het_mean_field}$.
+For simulations, I chose to focus on scale free networks $P(k) \sim k^{-\gamma}$, in particular the Barabasi - Albert (BA) network of parameters $N,\, m$ where N is the number of nodes and $m$ is the number of links attacched for each new node. This choice was motivated by the fact that article \cite{numeric_ising} could be used for comparison. The degree distribution for such a network is asymptotically given by $P(k) \sim k^{-3}$. Since one can only deal with finite size networks, finite size effects must be taken into account in the formulas $[\ref{eq:hom_mean_field}$, $\ref{eq:het_mean_field}, \ref{eq:replica}$.
 The finite size of the network implies the existence of a cutoff degree $k_{max}(N)$, so the right estimation of the moment $\left\langle k^n \right \rangle$ is given by
 \begin{equation*}
     <k^n> = \sum_{k=m}^{k_{max}(N)}\, k^n\,P(k)
@@ -56,36 +56,35 @@ The average degree is left unchanged by the finite size correction:  $<k> = 2m$,
 \begin{equation}
     T_C^{\text{hom. MF}} = 2m, \quad \quad T_C^{\text{het. MF}} \simeq \frac{m}{2}\,\text{ln}(N)
 \end{equation}
-The heterogeneous mean field approximation predicts a logaritmic increase of the temperature with the network size, which means that in the thermodynamic limit ($N\rightarrow +\infty$) the network is expected to be ferromagnetic at all temperatures: this agrees with the exact replica calculation $\cite{analytical_ising}$. The homogeneous mean field is too drastic and fails to predict this behaviour. Also, the critical temperature is expected to increase with the average degree, which indicates that adding more connections between the nodes helps in mantaining long-range order.
+The heterogeneous mean field approximation predicts a logaritmic increase of the temperature with the network size, which means that in the thermodynamic limit ($N\rightarrow +\infty$) the network is expected to be ferromagnetic at all temperatures. The homogeneous mean field is too drastic and fails to predict this behaviour. Additionally, these formulas state that the critical temperature is expected to increase with the average degree, which indicates that adding more connections between the nodes helps in mantaining long-range order.
 \bigskip \newline \noindent
-I decided to focus on BA networks and investigate the linear dependence of the critical temperature on $m$ predicted by the mean-field formulas. \medskip \newline \noindent
-As a preliminary check, I used my code to simulate the Ising model on a regular $2d$ lattice of $N =400$ nodes [Appendix, figures: \ref{fig:2d_relaxation} and \ref{fig:2d_scaling}]. Then I moved on to BA networks.
-Computational cost for the simulations on BA was much higher than for a 2d regular lattice of the same size. Handling the adiacency matrix of the network in sparse format brought a significant performance improvement, but still the computations were long. For comparison, the scaling of lattice quantities with temperature [Figure: \ref{fig:2d_scaling}] took $12$ minutes, whereas obtaining the same data for BA [Figure: \ref{fig:BA_scaling_m_10}] took on average $\sim 1h$.
-For this reason, I could not collect many experimental points. For the estimation of the critical temperature, I extracted an estimation out of each of the four thermodyninamic quantities ($E, \left\langle s \right\rangle , C, \chi$) and then averaged them. However, I found that the peak temperature of the specific heat was sistematically lower than the peak temperature for the magnetic suscepitibility. The latter was closer to the theoretical expected temperature value [Figure: \ref{fig:BA_scaling}]. Thus, I only averaged the temperatures obtained from the magnetization and the magnetic susceptibility, disregarding the other two. The final results of my simulations are shown in [Figure: \ref{fig:final_ising}]
-\begin{figure}
+The algorithm I implemented to simulate the Ising dynamic is the Metropolis-Hasting. As a preliminary check, I used my code to simulate the Ising model on a regular $2d$ lattice of $N =400$ nodes [Appendix, figures: \ref{fig:2d_relaxation} and \ref{fig:2d_scaling}]. Then I moved on to BA networks.
+Computational cost for the simulations on BA was much higher than for a 2d regular lattice of the same size. Handling the adiacency matrix of the network in sparse format brought a significant performance improvement, but still the computations were long (for comparison, obtaining the scaling of lattice quantities with temperature [Appendix, figure: \ref{fig:2d_scaling}] took $12$ minutes, whereas obtaining the same data for BA [Figure: \ref{fig:BA_scaling_m_10}] took on average $\sim 1h$). \medskip \newline \noindent
+ For the estimation of the critical temperature, I first considered extracting one estimation out of each of the four thermodyninamic quantities ($E, \left\langle s \right\rangle , C, \chi$) and then average them. However, I found that the peak temperature of the specific heat $C$ was sistematically lower than the peak temperature for the magnetic suscepitibility $\chi$ [see Figure: \ref{fig:BA_scaling}]. The latter was closer to the theoretical expected temperature value. This behaviour was not found in the preliminary simulation on a $2d$ regular lattice, thus I can exclude that it is an artifact of my code. In fact, I became avare the same behaviour has been observed by my colleague D.Wellingut \cite{dw}.
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{latex_source/images/ising/BA_scaling_num_nodes_400_t_points_50_steps_700_m_10_ti_8.99_tf_32.95.pdf}
-    \caption{Scaling of thermodinamic quantities with temperature. BA network with $N=400$ and $m=10$. Metropolis algorithm was run with $1500$ equilibration steps and $700$ sweep steps. The dashed line is the heterogeneous mean field critical temperature \ref{eq:het_mean_field}, while the solid line is the replica critical temperature \ref{eq:replica}. One can see that the peaks of the response fuction do not coincide. Indeed, I found in all my simulations that the specific heat peaked at a temperature systematically lower than the magnetic susceptibility. This behaviour was not found in the preliminary simulation on a $2d$ regular lattice, thus I can exclude that it is an artifact of my code. In fact, I became avare the same behaviour has been observed by my colleague D.Wellingut \cite{dw}. I suppose this can be due to finite size effects, but I could not verify if the effect faded for larger graphs, due to computational limitations.}
+    \includegraphics[width=0.85\linewidth]{latex_source/images/ising/BA_scaling_num_nodes_400_t_points_50_steps_700_m_10_ti_8.99_tf_32.95.pdf}
+    \caption{Scaling of thermodinamic quantities with temperature. BA network with $N=400$ and $m=10$. Metropolis algorithm was run with $1500$ equilibration steps and $700$ sweep steps. The dashed line is the heterogeneous mean field temperature \ref{eq:het_mean_field}, while the solid line is the replica temperature \ref{eq:replica}. The peaks of the two response fuctions do not coincide.}
     \label{fig:BA_scaling_m_10}
 \end{figure}
+\noindent For this reason, I only averaged the temperatures obtained from the magnetization and the magnetic susceptibility, disregarding the other two. The final results of my simulations are shown in [Figure: \ref{fig:final_ising}]. The critical temperature estimated from the simulations is systematically lower than the theoretical predictions, but at least the dependence on $m$ is similiar.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{latex_source/images/ising/BA_temperatures.pdf}
-    \caption{Scaling of the critical temperature with the minimum degree, for BA networks of $400$ nodes. The data refer to the critical temperature estrapolated from the magnetization and the magnetic susceptibility peak. The critical temperature estimated from the simulations is systematically lower than the theoretical predictions.}
+    \caption{Scaling of the critical temperature with the minimum degree, for BA networks of $400$ nodes. The data refer to the critical temperature estrapolated from the magnetization and the magnetic susceptibility peak.}
     \label{fig:final_ising}
 \end{figure}
 
 \newpage
 \section*{Appendix}
 \addcontentsline{toc}{section}{Appendix}
-\subsection*{Mean field calculations} \label{app:mean_field}
+\subsection*{Mean-field $T_C$ calculation} \label{app:mean_field}
 {\small
-The mean field approximation consists in negletting the pairwise spin correlations:
-\begin{equation*}
-    \text{corr}(s_i,\,s_j) = (s_i - \left\langle s_i \right \rangle)\cdot (s_j - \left\langle s_j \right \rangle)\simeq 0
-\end{equation*}
+The mean field approximation consists in negletting the pairwise spin correlations $
+    \text{corr}(s_i,\,s_j) = (s_i - \left\langle s_i \right \rangle)\cdot (s_j - \left\langle s_j \right \rangle)\simeq 0 $.
 Moreover, the homogeneous mean field supposes that the average magnetization on each node is the same for all nodes $\left\langle s_i\right\rangle \equiv \left \langle s \right \rangle$, while the heterogeneous mean field makes the weaker assumption that the average magnetization on a node depends at most on the node's degree: $\left \langle s_i\right \rangle \equiv \left\langle s_{k_i}\right\rangle$. 
-Let's consider the homogeneous mean field for simplicity. We start from the hamiltonian $H\{\mathbf{s}\} = -\frac{1}{2}\, \sum_{i,\,j}\,A_{i,\,j}\,s_i\cdot s_j - h\cdot\sum_{i}\,s_i$. We can write the identity 
+Let's consider the homogeneous mean field for simplicity. \medskip \newline \noindent
+We start from the hamiltonian $H\{\mathbf{s}\} = -\frac{1}{2}\, \sum_{i,\,j}\,A_{i,\,j}\,s_i\cdot s_j - h\cdot\sum_{i}\,s_i$ and write the identity 
 \begin{align*}
     s_i\cdot s_j &= [s_i - \left\langle s \right \rangle + \left\langle s \right \rangle]\cdot [s_j - \left\langle s \right \rangle + \left\langle s \right \rangle] \\
     &= (s_i - \left\langle s \right \rangle)\cdot (s_j-\left\langle s \right \rangle) + (s_i + s_j) \left\langle s \right \rangle - \left\langle s \right \rangle^2 \simeq (s_i + s_j) \left\langle s \right \rangle - \left\langle s \right \rangle^2
@@ -93,57 +92,44 @@ Let's consider the homogeneous mean field for simplicity. We start from the hami
 \begin{equation*}
     H \simeq\frac{1}{2}\,\left\langle s \right \rangle^2\,N\,\left\langle k \right \rangle - \sum_i\,s_i\cdot (\left\langle k \right \rangle\left\langle s \right \rangle + h)=: H^{MF}(\mathbf{s})
 \end{equation*}
-This expression can be now used to compute the partition function:
+This expression can be now used to compute the partition function $Z$ and, consequently, the free energy per site $f= F/N$:
 \begin{align*}
     Z^{MF} &= \sum_{\mathbf{s}}\, e^{-\beta H^{MF}(\mathbf{s})} = e^{-\beta \frac{N \left\langle k \right \rangle\left\langle s \right \rangle^2}{2}}\, \sum_{\mathbf{s}}\, e^{\beta\left[(<k><s> + h)\sum_l\,s_l\right]} \\
     &= e^{-\beta \frac{N <k><s>^2}{2}}\, \prod_{i=1}^{N}\, \left[ \sum_{s = \pm 1}\, e^{\beta(<k>+h)\,s_i} \right] \\
-    &= e^{-\beta \frac{N \left\langle k \right \rangle\left\langle s \right \rangle^2}{2}}\,\left[2\,\text{cosh}\left[\beta(\left\langle s \right \rangle\left\langle k \right \rangle+h)\right]\right]^N
+    &= e^{-\beta \frac{N \left\langle k \right \rangle\left\langle s \right \rangle^2}{2}}\,\left[2\,\text{cosh}\left[\beta(\left\langle s \right \rangle\left\langle k \right \rangle+h)\right]\right]^N \\
+   f^{MF}&= \frac{F^{MF}}{N} = - \frac{1}{N\beta}\text{ln}Z^{MF} = \frac{1}{2}\left\langle k \right \rangle\left\langle s \right \rangle^2 -\frac{1}{\beta}\text{ln}\left[2\,\text{cosh}[\beta(\left\langle s \right \rangle\,\left\langle k \right \rangle+h)]\right]
 \end{align*}
-The free energy per node is then:
+The average magnetization per site is then given by
 \begin{equation*}
-   f^{MF}= \frac{F^{MF}}{N} = - \frac{1}{N\beta}\text{ln}[Z^{MF}] = \frac{1}{2}\left\langle k \right \rangle\left\langle s \right \rangle^2 -\frac{1}{\beta}\text{ln}\left[2\,\text{cosh}[\beta(\left\langle s \right \rangle\,\left\langle k \right \rangle+h)]\right]
+    <s> = -\left(\frac{\partial f^{MF}}{\partial h}\right)_\beta = (\cdots) = \text{tanh}[\beta(<s><k>+h)]
 \end{equation*}
-\begin{minipage}{0.55\textwidth}
-The average magnetization per site is given by
-\begin{equation*}
-    <s> = -\left(\frac{\partial f^{MF}}{\partial h}\right)_\beta \equiv \text{tanh}[\beta(<s><k>+h)]
-\end{equation*}
-When the external field is off, $<s>$ is the solution of the implicit equation $<s> = \text{tanh}[\beta\,<s>\,<k>]$, which is the interesection of $y = <s>$ and $y = \text{tanh}[\beta\,<s>\,<k>]$.
-For $\beta < \beta_C = \frac{1}{<k>}$, there are no intersection points (the system is paramagnetic) for $\beta > \beta_C$ there are two simmetric intersections (the system is ferromagnetic). \\
-In the heterogeneous mean field, very similiar calculations \cite{analytical_ising} lead instead to the equations:
-\begin{align*}
-    <u> &= \sum_{k}\, \frac{k P(k)}{<k>}\,\text{tanh}[\beta ( k <u>)] \\ <s> &= \sum_k \, P(k)\,\text{tanh}[\beta ( k <u>)] 
-\end{align*}
-\end{minipage}
-\hfill
-\begin{minipage}{0.38\textwidth}
-\centering
-    \includegraphics[width = \textwidth]{latex_source/images/ising/IMG_56FE6CFC861B-1.jpeg}
-    \captionof{figure}{\small Grey line is $y=s$, coloured lines are $y = \text{tanh}(\beta <k> s)$, respectibely for $\beta\,<k> > 1$ (red, ferromagnetic state), $\beta\,<k> > 1$ (green, critical point) and $\beta\,<k> < 1$ (blue, paramagnetic state).}
-\end{minipage}
-\subsection*{Preliminary simulation on a 2D lattice}
+When the external field is off, $\left\langle s\right\rangle$ solves the self consistent equation $\left\langle s\right\rangle = \text{tanh}[\beta\,\left\langle s\right\rangle\,\left\langle k\right\rangle]$, which is the interesection of $y = \left\langle s\right\rangle$ and $y = \text{tanh}[\beta\,\left\langle s\right\rangle\,\left\langle k\right\rangle]$.
+For $\beta < \beta_C = \frac{1}{\left\langle k\right\rangle}$, there are no intersection points other than $\left\langle s \right \rangle = 0$  ($\Rightarrow$ the system is paramagnetic) for $\beta > \beta_C$ there are two simmetric non-zero intersections ($\Rightarrow$ the system is ferromagnetic). The critical temperature is thus given by $T_C = \frac{1}{\beta_C} = \left\langle k \right\rangle$, which is exactly [Eq. \ref{eq:hom_mean_field}].
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.4\textwidth]{latex_source/images/ising/IMG_56FE6CFC861B-1.jpeg}
+    \caption{\small Grey line is $y=s$, coloured lines are $y = \text{tanh}(\beta \left\langle k\right\rangle s)$, respectively for $\beta \left\langle k\right\rangle  > 1$ (red, ferromagnetic state), $\beta \left\langle k\right\rangle > 1$ (green, critical point) and $\beta \left\langle k\right\rangle < 1$ (blue, paramagnetic state).}
+\end{figure}
+\subsection*{Preliminary Montecarlo simulation on a 2D lattice}
 {\small
-To check the correctness of my code, I first tested it on a 2D lattice. This way, I could look by eye if the code behaved as expected and get an estimate of the computation time required before moving to more complicated simulations. 
-In 2D, an infinite regular spin lattice exibits a second order phase transition at the critical
-temperature 
+An infinite regular $2-$ dimentional spin lattice exibits a second order phase transition at the critical temperature 
 \begin{equation}
-T_C = \frac{2\,J}{k_B\,\log{1 + \sqrt{2}}} \simeq 2.26
+T_C = \frac{2\,}{\,\log{1 + \sqrt{2}}} \simeq 2.26
   \end{equation}  
     \label{eq:onsager}
-(A finite lattice of linear dimention $N$ exibits finite size effect, so the estimated critical temperature is slightly different from the Onsager formula.)
 For my simulation, I considered a lattice of $N = 20 \cdot 20 = 400$ nodes. I first simulated the dynamics at fixed temperature, to get an estimate of the number of steps required for the system to equilibrate. I found that $\simeq 500$ steps where sufficent for a lattice of this size [Fig \ref{fig:2d_relaxation}]. Then I simulated Ising over a broad range of temperatures around the expected critical temperature and computed the energy, magnetization, heat capacity and magnetic susceptibility [Fig: \ref{fig:2d_scaling}].
 }
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\linewidth]{latex_source/images/ising/2d_relaxation.pdf}
-    \caption{{\small Time evolution of the magnetization and energy, respectively below, at and above the critical temperature $T_C \simeq 2.26$. From the top figure ($T = 1.13 < T_C$ one can see that approximately $\sim\,250$ Metropolis steps are enough for the sistem to equilibrate.}}
+    \includegraphics[width=0.8\linewidth]{latex_source/images/ising/2d_relaxation.pdf}
+    \caption{{\small Time evolution of the magnetization and energy, respectively below, at and above the critical temperature \ref{eq:onsager}. Approximately $\sim\,250$ Metropolis steps are enough for the sistem to equilibrate.}}
     \label{fig:2d_relaxation}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{latex_source/images/ising/2d_scaling.pdf}
-    \caption{Dependence of thermodynamic quantities on temperature. The vertical grey line marks the theoretical critical temperature as given by Onsager's formula [Eq: \ref{eq:onsager}]. One can see that the peaks of $C$ and $\Chi$ are very close to the theoretical temperature. For $500$ equilibration steps and $500$ sweep steps at each temperature, the code took $12$ minutes to execute.}
+    \caption{Dependence of thermodynamic quantities on temperature. The vertical grey line marks the theoretical critical temperature as given by Onsager's formula [Eq: \ref{eq:onsager}]. One can see that the peaks of $C$ and $\chi$ are very close to the theoretical temperature. For $500$ equilibration steps and $500$ sweep steps at each temperature, the code took $12$ minutes to execute.}
     \label{fig:2d_scaling}
 \end{figure}
 }

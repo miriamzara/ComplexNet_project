@@ -30,12 +30,11 @@ Here, $\mathbf{u} = (u_1, \cdots u_N)$ and $\mathbf{v} = (v_1, \cdots v_N)$ are,
  			\text{tr}(J)= f_u + g_v < 0\\
  			\text{det}(J) = f_u\cdot g_v f_v\cdot g_u>0
  		\end{cases},\,
-      J(\overline{u}\,, \overline{v}) &:= 
+      J(\overline{u}\,, \overline{v}) := 
 		\begin{pmatrix}
  			f_u & f_v \\
  			g_u & g_v
  		\end{pmatrix}
-  \label{eq:jacobian}
   \label{eq:basic_1}
 \end{equation}
 	
@@ -83,7 +82,7 @@ For $\sigma$ slightly above the critical threshold, the unstable mode(s) will co
     \Lambda_c(\epsilon) := \frac{1}{\epsilon}\,\sqrt{\frac{\text{det}[J]}{\sigma_c}}
     \label{eq:critical_eigenvalue}
 \end{equation}
-I reported the full derivation of the above stated facts in the appendix [Appendix: \ref{section:conditions_for_instability}].
+The full derivation is presented in [Appendix: \ref{section:conditions_for_instability}].
 The subsequent evolution of the pattern is non-linear and eventually results in a steady state (that can be either stationary or time dependent).  \bigskip \newline \noindent
 \section{Numerical Simulations}
 As in \cite{main_network}, the reaction terms are set as
@@ -99,30 +98,32 @@ helding a linearly stable fixed point $(\overline{u},\, \overline{v}) = (5, 10)$
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{latex_source/images/turing/multiple_dispersion.pdf}
-    \caption{Dispersion relation for the chosen reaction kinetics [Eq. $\ref{eq:chosen_kinetics}$], at different values of the activator diffusivity $\epsilon$. The dashed grey lines are the dispersion curves slightly above and below the critical diffusivity ratio $\sigma_c$. As stated in [Eq. \ref{eq:critical_eigenvalue}], the critical eigenvalue $\Lambda_c$ is inversely proportional to the activator diffusivity $\epsilon$.}
+    \caption{ Dispersion relation for the chosen reaction kinetics [Eq. $\ref{eq:chosen_kinetics}$], at different values of the activator diffusivity $\epsilon$. The dashed grey lines are the dispersion curves slightly above and below the critical diffusivity ratio $\sigma_c$. The critical eigenvalue $\Lambda_c$ Eq. \ref{eq:critical_eigenvalue}] is inversely proportional to the activator diffusivity $\epsilon$.}
 \end{figure}
-Following the choice of the authors, I simulated the dynamics on Barabasi-Albert scale free networks. I chose parameters $N = 200$ for the number of nodes and $\<k\> = 10$ for the mean degree. My activator diffusivity was $\epsilon = 0.12$, and my diffusivity ratio was $\sigma = 15.6 > \sigma_c = 15.5$. The reasoning for chosing a diffusivity ratio that is only slightly above the critical threshold is to keep the number of different allowed modes low.
+Following the choice of the authors, I simulated the dynamics on Barabasi-Albert scale free networks. I chose parameters $N = 200$ for the number of nodes and $\left \langle k \right \rangle = 10$ for the mean degree. My activator diffusivity was $\epsilon = 0.12$, and my diffusivity ratio was $\sigma = 15.6 > \sigma_c = 15.5$. The reasoning for chosing a diffusivity ratio that is only slightly above the critical threshold is to keep the number of different allowed modes low.
 \begin{figure}[H]
+\centering
 \subfigure[]{\includegraphics[width = 0.47\textwidth]{latex_source/images/turing/network_200.pdf}}
+\hfill
 \subfigure[]{\includegraphics[width = 0.47\textwidth]{latex_source/images/turing/simulation_dispersion.pdf}}
-\caption{Most relevant properties of the network used in the simulation. Subfigure (a) shows the degree spectrum and the laplacian eigenvalue spectrum of the chosen graph. Network nodes are indexed by decreasing degree. Subfigure (b) shows the dispersion relation curve. Critical eigenvalue is $\Lambda_c \simeq 12.8141$. The eigenvalue closest to $\Lambda_c$ is $\Lambda_n \simeq 12.64$, of index $n=157$. However, as one can see from the graph, the network eigenvalue spectrum comprehends several other allowed modes (red crosses) in the unstable range, and they are expected to contribute to pattern initiation as well.}
+\caption{ Most relevant properties of the network used in the simulation. Subfigure (a) shows the degree spectrum and the laplacian eigenvalue spectrum of the chosen graph. Network nodes are indexed by decreasing degree. Subfigure (b) shows the dispersion relation curve. Critical eigenvalue is $\Lambda_c \simeq 12.8141$. The eigenvalue closest to $\Lambda_c$ is $\Lambda_n \simeq 12.64$, of index $n=157$. However, as one can see from the graph, the network eigenvalue spectrum comprehends several other allowed modes (red crosses) in the unstable range, and they are expected to contribute to pattern initiation as well.}
 \end{figure}
 \noindent
-The initial homogeneous state $(\overline{u},\,\overline{v})$ was perturbed with a random uniform perturbation at each node of amplitude $0.05$. [Figure \ref{fig:snapshots}] show snapshots of the activator concentration on nodes at different times. Also, the GithHub repository \cite{git} contains a .mp4 video of the whole evolution. \medskip \newline \noindent
-In the early stage, the pattern is expected to grow proportionally to the critical eigenvector, which is is the mode of largest growing rate: $\delta\,u(t),\, \delta\,v(t) \propto \Phi^{(n)}$.
-In fact, when the initial uniform perturbation dies out and the pattern starts to grow, the activator substance distribution is located similarly to the critical eigenvector (see snapshot $t = 25.06$). Later on, the evolution becomes strongly non-linear and the pattern is reshaped (see snapshot at $t = 100.25$), till it settles into a stationary state (see snapshot at $t = 150.38$) where nodes are split into one activator-rich group and one activator-poor group. The authors found that this peculiar behaviour is well described in the framework of a mean field theory \cite{main_network}. \medskip \newline \noindent
-An interesting thing one can notice in the initial stage pattern [Figure \ref{fig:snapshots}, snapshot at $t = 25.06$] is that the significant variations of the activator level are localized on a subset of nodes of close degree ($k \sim 25-75$). That is, only a specific subset of the network undergoes differentiation. This effect is was not a fortuity but is due to the fact that the laplacian eigenvectors in a large graph with a broad degree distribution tend to be localized around a specific degree $\overline{k}(\Lambda)$. Also, as authors report, a simple relation $\overline{k}(\Lambda) \simeq \Lambda$ seems to hold. I checked wether I could find the same behaviour for my graph (see [Figure \ref{fig:eigenvectors}] and [Figure \ref{fig:heatmap}].
+The initial homogeneous state $(\overline{u},\,\overline{v})$ was perturbed with a random uniform perturbation at each node of amplitude $0.05$. [Figure \ref{fig:snapshots}] show snapshots of the activator concentration on nodes at different times. Also, the GithHub repository \cite{git} contains a .mp4 video of the whole evolution. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width = 0.9\textwidth]{latex_source/images/turing/snapshots.pdf}
-    \caption{Time evolution of the activator concentration. The subfigure at top left corner shows the components of the critical eigenvector (in black) and its closest neighbours in the unstable range (in grey).}
+    \includegraphics[width = 0.81\textwidth]{latex_source/images/turing/snapshots.pdf}
+    \caption{ Time evolution of the activator concentration. The subfigure at top left corner shows the components of the critical eigenvector (black) and its closest neighbours in the unstable range (grey).}
     \label{fig:snapshots}
 \end{figure}
+In the early stage, the pattern is expected to grow proportionally to the critical eigenvector, which is is the mode of largest growing rate: $\delta\,u(t),\, \delta\,v(t) \propto \Phi^{(n)}$.
+In fact, when the initial uniform perturbation dies out and the pattern starts to grow, the activator substance distribution is located similarly to the critical eigenvector (see snapshot $t = 25.06$). Later on, the evolution becomes strongly non-linear and the pattern is reshaped (see snapshot at $t = 100.25$), till it settles into a stationary state (see snapshot at $t = 150.38$) where nodes are split into one activator-rich group and one activator-poor group. The authors found that this peculiar behaviour is well described in the framework of a mean field theory \cite{main_network}. \medskip \newline \noindent
+One thing that can be noticed in the initial stage pattern [Figure \ref{fig:snapshots}, snapshot at $t = 25.06$] is that the significant variations of the activator level are localized on a subset of nodes of close degree ($k \sim 25-75$). That is, only a specific subset of the network undergoes differentiation. This effect is was not a fortuity but is due to the fact that the laplacian eigenvectors in a large graph with a broad degree distribution tend to be localized around a specific degree $\overline{k}(\Lambda)$. Also, as authors report, a simple relation $\overline{k}(\Lambda) \simeq \Lambda$ seems to hold. I checked wether I could find the same behaviour for my graph (see [Figure \ref{fig:eigenvectors}] and [Figure \ref{fig:heatmap}]).
 \begin{figure}[H]
 \centering
 \includegraphics[width =\textwidth]{latex_source/images/turing/eigenvectors_200.pdf}
 \caption{Localization of laplacian eigenvectors in 
-a BA with $N=200$ and $\<k\> = 10$. Nodes nodes are ranked by their degree. With incrementing eigenvalue $\Lambda$, the characteristic degree becomes higher.}
+a BA with $N=200$ and $\left \langle k \right \rangle = 10$. Nodes nodes are ranked by their degree. With incrementing eigenvalue $\Lambda$, the characteristic degree becomes higher.}
 \label{fig:eigenvectors}
 \end{figure}
 
@@ -130,7 +131,7 @@ a BA with $N=200$ and $\<k\> = 10$. Nodes nodes are ranked by their degree. With
     \centering
 \subfigure[]{\includegraphics[width=0.48\textwidth]{latex_source/images/turing/density_200.pdf}}
 \subfigure[]{\includegraphics[width=0.48\textwidth]{latex_source/images/turing/density_1000.pdf}}
-\caption{Localization of laplacian eigenvectors in a BA graph with $N=200$ nodes and $\<k\>=10$ (a) and in a BA graph with $N=1000$ nodes and $\<k\>=20$ (b). Eigenvalues have been grouped into bins of unitary width. The population of nodes inside each degree group, $N_k$, was calculated. The heatmap represents the mean density of differentiated nodes for each degree group $z = N_k^{\text{diff}}(\Lambda)/N_k$. A node $i$ of degree was considered to be differentiated with respect to eigenvalue $\Lambda_n$ if its eigenvector component satisfied, $|\Phi_i^{(n)}|> 0.1$. I found, like authors \cite{main_network} report, that approximately $\overline{k}(\Lambda) \propto \Lambda$ (dashed line) and that effect is more pronounced in the larger graph.}
+\caption{Localization of laplacian eigenvectors in a BA graph with $N=200$ nodes and $\left \langle k\right \rangle=10$ (a) and in a BA graph with $N=1000$ nodes and $\left \langle k \right \rangle=20$ (b). Eigenvalues have been grouped into bins of unitary width. The population of nodes inside each degree group, $N_k$, was calculated. The heatmap represents the mean density of differentiated nodes for each degree group $z = N_k^{\text{diff}}(\Lambda)/N_k$. A node $i$ of degree was considered to be differentiated with respect to eigenvalue $\Lambda_n$ if its eigenvector component satisfied, $|\Phi_i^{(n)}|> 0.1$. I found, like authors \cite{main_network} report, that approximately $\overline{k}(\Lambda) \propto \Lambda$ (dashed line) and that effect is more pronounced in the larger graph.}
 \label{fig:heatmap}
 \end{figure}
 
@@ -143,7 +144,7 @@ a BA with $N=200$ and $\<k\> = 10$. Nodes nodes are ranked by their degree. With
 \subsection*{Linear Stability of a 2x2 autonomous system}
 \label{app:bifurcation_diagram}
 {\small
-Say $(\overline{x},\, \overline{y})\in \mathbb{R}^2$ is a fixed point (or equilibrium) of the autonomous system 
+Say $(\overline{x},\, \overline{y})\in \mathbbm{R}^2$ is a fixed point (or equilibrium) of the autonomous system 
 \begin{equation*}
     \begin{pmatrix}
         \dot{x}(t) \\
@@ -196,38 +197,38 @@ Then we have the following cases, depending on the discriminant $\Delta^2 = \tex
 \begin{equation*}
     \begin{cases}
         \Delta^2 > 0: \quad \lambda_1,\, \lambda_2  =  \frac{\text{tr}[J] \pm \Delta }{2} \\
-        \Delta^2 = 0: \quad \lambda_1,= \lambda_2 = \frac{\text{tr}[J]}{2} \in \mathbb{R} \\
-        \Delta^2 <0: \quad \lambda_1,= \lambda_2  = \alpha \pm i \beta \in \mathbb{C}
+        \Delta^2 = 0: \quad \lambda_1,= \lambda_2 = \frac{\text{tr}[J]}{2} \in \mathbbm{R} \\
+        \Delta^2 <0: \quad \lambda_1,= \lambda_2  = \alpha \pm i \beta \in \mathbbm{C}
     \end{cases}
 \end{equation*}
 One can easily see from the polynomial $p_J(\lambda)$ that in the case $\Delta^2 \geq 0$, the requirement that both roots are negative is satisfied if and only if $\text{tr}[J]<0,\, \text{det}[J] >0$. In the case $\Delta <0$, we have obligatorily $\text{det}[J] = \lambda \cdot \overline{\lambda} = |\lambda|^2 >0$, and $\text{tr}[J]= 2\cdot \mathcal{R}e(\lambda)$. Then again the requirement holds if and only if $\text{tr}[J]< 0$.
 \end{minipage}
 \hfill
-\definecolor{mygreen}{RGB}{38, 181, 124}
 \begin{minipage}{0.5\textwidth}
 \centering
     \includegraphics[width=0.8\linewidth]{latex_source/images/turing/bifurcation.jpeg}
-    \captionof{figure}{Bifurcation diagram for a $2\cdot\,2$ homogeneous system. $(\pm,\,\pm)$ are the signs of $\mathcal{R}e\{\lambda\}$ in the various regions of the (tr[J], det[J]) plane. \textcolor{mygreen}{Green} marks the stability region and \textcolor{Grey}{Grey} marks the region where eigenvalues are complex.}
+    \captionof{figure}{Bifurcation diagram for a $2\cdot\,2$ homogeneous system. $(\pm,\,\pm)$ are the signs of $\mathcal{R}e\{\lambda\}$ in the various regions of the (tr[J], det[J]) plane. Green marks the stability region and grey marks the region where eigenvalues are complex.}
     \label{fig:bifurcation}
 \end{minipage}
 }
 \bigskip \newline \noindent
 \subsection*{An intuition of how diffusion can produce patterns}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{latex_source/images/turing/key_mechanism.png}
-    \label{fig:key}
-    \caption{ This picture, taken from \cite{bio_article}, refers to the Turing mechanism in a continuous medium, but is anyway helpful to get an intuition of how pattern generation works. Graph 1 shows the initial condition of the system. Suppose that the concentration of the
+[Figure \ref{fig:key}] can help understand how the activation - inhibition mechanism can induce the formation of heterogeneous patterns. Graph $1$ shows the initial condition of the system. Suppose that the concentration of the
 activator is relatively higher than in other regions by random fluctuation. By the
 self-enhancing property of the activator, the concentration of activator increases at the
-center region (graph2), followed by the increase of inhibitor at the neighboring region A.
-As the diffusion rate of inhibitor is much larger than that of the activator, substantial
+center region (graph $2$), followed by the increase of inhibitor at the neighboring region A.
+As the \textbf{diffusion rate of inhibitor is larger} than that of the activator, substantial
 amounts of inhibitor move toward the lateral regions. This depresses the activator
-function, resulting in the decrease of the activator concentration there (graph3).
-Decrease of activator causes the decrease of inhibitor in the wider region (graph4). At
+function, resulting in the decrease of the activator concentration there (graph $3$).
+Decrease of activator causes the decrease of inhibitor in the wider region (graph $4$). At
 the region B, as inhibitor concentration is gotten lower, activator becomes relatively
 dominant than inhibitor. This situation is enough to start the local self activation at
-region B (graph5).}
+region B (graph $5$). 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{latex_source/images/turing/key_mechanism.png}
+    \label{fig:key}
+    \caption{ Picture taken from \cite{bio_article}.}
    \label{fig:key}
 \end{figure}
 

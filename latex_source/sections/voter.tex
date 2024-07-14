@@ -43,18 +43,18 @@ Actually, there is an alternative rule which may look equivalent:
 \newline
 Indeed the two rules are equivalent for regular lattices, but not in the case of complex networks \cite{suchecki_analitical}. For each time step, this update rule is applied $N$ times if $N$ is the network size, so that \textit{on average} each node is updated once. The voter model defines a markovian stochastic process. There are two absorbing states: all spins up and all spins down (when it reaches one of these states, it cannot change anymore, that is why they are called absorbing). If we identify network nodes as people and spin up and down with two possible opinion, the absorbing state represent consensum. \\
 There is always a chance that a finite size network reaches consensus. In fact, \textbf{the mean time to reach consensus in a finite network is always finite} (the mean is here intended over the set of all evolution histories and initial conditions), whether it is a regular lattice or a complex network. However, conceptually there are different scenarios when infinite size networks are considered instead.\\
-The mean time $\<\tau\>$ to reach consensus in a finite, regular lattice of $N$ nodes and dimention $d$ is known to scale as:
+The mean time $\left \langle \tau \right \rangle$ to reach consensus in a finite, regular lattice of $N$ nodes and dimention $d$ is known to scale as:
 \begin{equation*}
-    \<\tau\>(N) \sim
+    \left \langle \tau \right \rangle(N) \sim
     \begin{cases}
         N^2 \quad &\text{if}\quad d=1 \\
         N\cdot \ln{N} &\text{if}\quad d=2 \\
         N &\text{if}\quad d>2 \\
     \end{cases}
 \end{equation*}
-For networks, one could guess to find $\<\tau\>(N) \sim N$ as for high dimentional lattices. However this is not true in general. For instance, \cite{sood} found analitically that, for uncorrelated, scale-free networks with degree distribution $P(k)\sim k^{-\gamma}$ and \textit{node-update} rule:
+For networks, one could guess to find $\left \langle \tau \right \rangle(N) \sim N$ as for high dimentional lattices. However this is not true in general. For instance, \cite{sood} found analitically that, for uncorrelated, scale-free networks with degree distribution $P(k)\sim k^{-\gamma}$ and \textit{node-update} rule:
 \begin{equation*}
-    \<\tau\>(N) \sim
+    \left \langle \tau \right \rangle(N) \sim
         \begin{cases}
          N^{\alpha}, \, \alpha<1 \quad &\text{if}\quad \gamma < 3 \\
         \frac{N}{\ln{N}} &\text{if}\quad \gamma = 3 \\
@@ -69,19 +69,20 @@ A standard order parameter used to measure the ordering process of the voter dyn
         1 & \text{if}\quad \sigma_i\neq \sigma_j \\
         0 & \text{if}\quad \sigma_i= \sigma_j \\
     \end{cases}
+\label{eq:rho}
 \end{equation}
 \section{Numerical Simulations}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{latex_source/images/voter/example_evolution.pdf}
-    \caption{Evolution of the voter model on Barabasi-Albert networks with $N=100$ and $\<k\> = 8$. Each line is a trajectory on a different network instance of the BA model. Initial state is drawn uniformly at random for each trajectory.}
+    \caption{Evolution of the voter model on Barabasi-Albert networks with $N=100$ and $\left\langle k\right\rangle = 8$. Each line is a trajectory on a different network instance of the BA model. Initial state is drawn uniformly at random for each trajectory.}
     \label{fig:enter-label}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{latex_source/images/voter/BA_node_update_rule_results_logscale.pdf}
-    \caption{Evolution of the average interface density [Eq. $\ref{eq:rho}$] in Barabasi Albert networks of different sizes (see legend) and mean degree $\<k\>= 6$. Data is averaged over $500$ realizations. }
+    \caption{Evolution of the average interface density [Eq. $\ref{eq:rho}$] in Barabasi Albert networks of mean degree $\left\langle k\right\rangle= 6$ different sizes. Data is averaged over $500$ realizations. }
     \label{fig:BA_evolution}
 \end{figure}
 
@@ -94,7 +95,7 @@ A standard order parameter used to measure the ordering process of the voter dyn
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{latex_source/images/voter/BA_time_scaling.pdf}
-    \caption{Average survival times for Barabasi Albert networks of different sizes, as results from the exponential fit of the curves in [Fig: $\ref{fig:BA_evolution}$]. Data is fitted with a power law $y = \alpha \cdot x^\gamma$ with free parameters $\alpha,\, \gamma$ with the method of least squares implemented in \textbf{scipy.optimize.curve\_fit} from Phyton library Scipy \cite{scipy}. The best estimation for fit parameters are $\gamma = 0.8312 +/- 0.0007$, $\alpha = 0.707 +- 0.004$. The fit curve is \textcolor{red}{red}. For comparison, also the theoretical expectation $\tau \sim \frac{N}{\log{N}}$ is plotted. One can see that the slope of the two curves are very similiar. To make $x/logx$ fit the data, one simply needs to add a prefactor, which corresponds to an intercept in the log log scale of the plot presented here.}
+    \includegraphics[width=0.7\linewidth]{latex_source/images/voter/BA_time_scaling.pdf}
+    \caption{Average survival times for Barabasi Albert networks of different sizes, as results from the exponential fit of the curves in [Fig: $\ref{fig:BA_evolution}$]. Data is fitted with a power law $y = \alpha \cdot x^\gamma$ with free parameters $\alpha,\, \gamma$ with the method of least squares For comparison, also the theoretical expectation $\tau \sim \frac{N}{\log{N}}$ is plotted (green line). One can see that the slope of the two curves are very similiar.}
     \label{fig:BA_scaling}
 \end{figure}
