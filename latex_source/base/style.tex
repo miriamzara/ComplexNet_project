@@ -1,14 +1,8 @@
 \titleformat{\section}[block]{\normalfont\huge\bfseries}{\thesection.}{.5em}{\Huge}[{}]
 
-% code formatting with listing
-\lstset{
-  basicstyle=\ttfamily,
-  breaklines=true,
-}
-% Margins
 \geometry{
     a4paper,
-    margin=2.75cm
+    margin=2.3cm
 }
 % Index depth limit
 \setcounter{tocdepth}{2}
@@ -27,12 +21,11 @@
 \definecolor{gray25}{gray}{0.25}
 \definecolor{unipd}{HTML}{870011}
 \newcommand{\hsp}{\hspace{20pt}}
-\titleformat{\chapter}[hang]{\Huge\bfseries}{\textcolor{gray45}{\thechapter}\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries\textcolor{unipd}}[\color{unipd}{\titlerule[1.8pt]}]
 
-\newcommand{\resp}[1]{\vspace{-1.5truecm}\noindent\textcolor{unipd}{\textbf{Task leader(s):}}~\emph{#1}}
-\newcommand{\authors}[1]{\begin{scriptsize}\textcolor{unipd}{\textbf{Credits:}} #1\end{scriptsize}}
-\newcommand{\startsolution}{\vspace{0.35truecm}\noindent\textcolor{unipd}{\textbf{Risoluzione del problema}}\vspace{0.35truecm}}
-\newcommand{\solutionpoint}[1]{\noindent\textbf{Q#1.}~}
+
+\titleformat{\chapter}[hang]{\vspace*{-1.5cm}\Huge\bfseries}{\textcolor{gray45}{\thechapter}\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries\textcolor{unipd}}[\color{unipd}{\titlerule[1.8pt]}]
+
+
 
 \pagestyle{fancy}
 \renewcommand{\footrulewidth}{0.2pt}% default is 0pt

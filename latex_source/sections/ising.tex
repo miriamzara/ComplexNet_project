@@ -1,7 +1,7 @@
 \chapter{Task 01: Ising Model}
 \section{Task Description}
 The aim of this task is to simulate the Ising dynamics on complex networks.
-\section{Mathematical model}
+\section{Mathematical Model}
 The ferromagnetic Ising model on a network of $N$ nodes and adiacency matrix $A$ is described in its most general form by the hamiltonian:
 \begin{equation*}
     \mathcal{H}\{\mathbf{s}\} = - \sum_{i < j}\, J_{i,j}\,s_i\cdot s_j - \sum_{i}\, h_i\,s_i
@@ -34,7 +34,11 @@ By means of a mean field approximation, it is possible to show that the existenc
     T_C^{\text{het. MF}} =\,\frac{\left\langle k^2 \right \rangle}{\left\langle k \right \rangle}
 \end{equation}
 In particular, the latter formula is derived under the assumption that the network is uncorrelated, that is, the nearest neighbour degree distribution is the same as in the configuration model $P_{n.n.} (k)=\frac{k\cdot P(k)}{<k>}$.
-The exact value of the critical temperature, as well as the critical exponents, are found via the replica approach \cite{analytical_ising}. \\ 
+A refined estimation of the critical temperature is found with the replica approach \cite{analytical_ising}. \\ 
+\begin{equation}
+    T_C^{replica} = \left[ -\frac{1}{2}\,\text{ln}\left[2- \frac{\left\langle k \right\rangle}{\left\langle k^2 \right\rangle}\right]\right]^{-1}
+\label{eq:replica}    
+\end{equation}
 The order parameter of the transition is the average magnetization per site, $s$:
 $$
 s := \frac{M}{N} = \mathbbm{E}\left[\frac{\sum_{i}\,s_i}{N}\right]
@@ -52,14 +56,27 @@ The average degree is left unchanged by the finite size correction:  $<k> = 2m$,
 \begin{equation}
     T_C^{\text{hom. MF}} = 2m, \quad \quad T_C^{\text{het. MF}} \simeq \frac{m}{2}\,\text{ln}(N)
 \end{equation}
-The heterogeneous mean field approximation predicts a logaritmic increase of the temperature with the network size, which means that in the thermodynamic limit ($N\rightarrow +\infty$) the network is expected to be ferromagnetic at all temperatures: this agrees with the exact replica calculation $\cite{analytical_ising}$. The homogeneous mean field is too drastic and fails to predict this behaviour. Also, the critical temperature is expected to increase with the average degree, which indicates that adding more connections between the nodes helps in mantaining long-range order. \\
-For my simulations, I chose to investigate both the finite size effect and the linear dependence on $m$ predicted by the heterogeneous mean field formula.
-
-
-
+The heterogeneous mean field approximation predicts a logaritmic increase of the temperature with the network size, which means that in the thermodynamic limit ($N\rightarrow +\infty$) the network is expected to be ferromagnetic at all temperatures: this agrees with the exact replica calculation $\cite{analytical_ising}$. The homogeneous mean field is too drastic and fails to predict this behaviour. Also, the critical temperature is expected to increase with the average degree, which indicates that adding more connections between the nodes helps in mantaining long-range order.
+\bigskip \newline \noindent
+I decided to focus on BA networks and investigate the linear dependence of the critical temperature on $m$ predicted by the mean-field formulas. \medskip \newline \noindent
+As a preliminary check, I used my code to simulate the Ising model on a regular $2d$ lattice of $N =400$ nodes [Appendix, figures: \ref{fig:2d_relaxation} and \ref{fig:2d_scaling}]. Then I moved on to BA networks.
+Computational cost for the simulations on BA was much higher than for a 2d regular lattice of the same size. Handling the adiacency matrix of the network in sparse format brought a significant performance improvement, but still the computations were long. For comparison, the scaling of lattice quantities with temperature [Figure: \ref{fig:2d_scaling}] took $12$ minutes, whereas obtaining the same data for BA [Figure: \ref{fig:BA_scaling_m_10}] took on average $\sim 1h$.
+For this reason, I could not collect many experimental points. For the estimation of the critical temperature, I extracted an estimation out of each of the four thermodyninamic quantities ($E, \left\langle s \right\rangle , C, \chi$) and then averaged them. However, I found that the peak temperature of the specific heat was sistematically lower than the peak temperature for the magnetic suscepitibility. The latter was closer to the theoretical expected temperature value [Figure: \ref{fig:BA_scaling}]. Thus, I only averaged the temperatures obtained from the magnetization and the magnetic susceptibility, disregarding the other two. The final results of my simulations are shown in [Figure: \ref{fig:final_ising}]
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{latex_source/images/ising/BA_scaling_num_nodes_400_t_points_50_steps_700_m_10_ti_8.99_tf_32.95.pdf}
+    \caption{Scaling of thermodinamic quantities with temperature. BA network with $N=400$ and $m=10$. Metropolis algorithm was run with $1500$ equilibration steps and $700$ sweep steps. The dashed line is the heterogeneous mean field critical temperature \ref{eq:het_mean_field}, while the solid line is the replica critical temperature \ref{eq:replica}. One can see that the peaks of the response fuction do not coincide. Indeed, I found in all my simulations that the specific heat peaked at a temperature systematically lower than the magnetic susceptibility. This behaviour was not found in the preliminary simulation on a $2d$ regular lattice, thus I can exclude that it is an artifact of my code. In fact, I became avare the same behaviour has been observed by my colleague D.Wellingut \cite{dw}. I suppose this can be due to finite size effects, but I could not verify if the effect faded for larger graphs, due to computational limitations.}
+    \label{fig:BA_scaling_m_10}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{latex_source/images/ising/BA_temperatures.pdf}
+    \caption{Scaling of the critical temperature with the minimum degree, for BA networks of $400$ nodes. The data refer to the critical temperature estrapolated from the magnetization and the magnetic susceptibility peak. The critical temperature estimated from the simulations is systematically lower than the theoretical predictions.}
+    \label{fig:final_ising}
+\end{figure}
 
 \newpage
-\subsection*{Appendix}
+\section*{Appendix}
 \addcontentsline{toc}{section}{Appendix}
 \subsection*{Mean field calculations} \label{app:mean_field}
 {\small

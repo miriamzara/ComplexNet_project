@@ -8,7 +8,8 @@ I decided to build networks where \textbf{nodes} correspond to \textbf{towns} wh
 I consulted \textit{EGM19\_DataSpecification.pdf, 
  Annex C - Definition of Features and Attributes} to understand what files I needed to look for in the database. I used the following:
  \textit{RailrdC.shp/.shx/.dbf}, containing data of railway stations, and \textit{RailrdL.shp/shx/dbf}, containing data of rails. I used Python library GeoPandas to open the shapefiles and NetworkX to create and manipulate graph objects. Station's data encoded in \textit{Point} objects containing the station's latitude and longitude, while railway data is encoded in \textit{LineString} objects, which are lists of points that connected together form a segmented line.
-Besides, geometrical data comes with a number of attributes. These include :'ICC', the 2- character country IS03 code (es. IT, for Italy),  'NAMA1', the station name, and 'EXS', the existence cathegory of the rail (e.g. abandoned, operational, under construction...). Figure \ref{fig:rails_preliminary} gives a glimpse into what raw data looks like. \medskip \newline \noindent
+Besides, geometrical data comes with a number of attributes. These include :'ICC', the 2- character country IS03 code (es. IT, for Italy),  'NAMA1', the station name, and 'EXS', the existence cathegory of the rail (e.g. abandoned, operational, under construction...).
+\medskip \newline \noindent
 As said already, in my method the desidered networks are extracted as a subset of a preliminary network. 
 The latter is built upon the data contained in file \textit{RailrdL.shp} with the following steps:
 \newline \noindent
@@ -25,50 +26,36 @@ Figure [Fig: \ref{fig:raw}] shows what the resulting network looks like. At this
     \includegraphics[width = \textwidth]{latex_source/images/railways/raw_networks/raw_IT_network.pdf}
     \label{fig:raw}
 \end{minipage}
-
-
-
-\section{Creation of the city/railways networks}
-The creation of the raw network was straightforward; however, the refined network required a few specific steps:
+\bigskip \newline 
+The following step consists in selecting only the nodes which corresponds to actual city stations, and rewire the links. To achieve this:
 \begin{enumerate}
-\item Data was read from "RailrdC.shp" to create a list of city nodes\textbf{"{ICC}\_city\_nodes.csv"}. This file contains the columns: nodeID, nodeLabel, latitude, longitude, country\_name, and country\_ISO3.
-\item The raw graph data "{ICC}\_raw\_nodes.csv" and "{ICC}\_raw\_edges.csv" is recovered. Attributes 'label' and 'is near city' are added to raw nodes. A raw node that matches a city's coordinates in "{ICC}\_city\_nodes.csv" within a specified threshold distance was assigned either "label" = "city\_name" and "is\_near\_city" = "empty" (if it was the best match) or "label" = "empty" and "is\_near\_city" = "city\_name".
-\item The city/rails graph was derived as a subset of the current graph: for each pair of labeled nodes ('label' $\neq$ 'empty') that are within a maximum radius, the shortest paths were calculated. If a shortest path existed where all intermediate nodes were neither cities nor dangerously close to other cities, an edge was added to the final output graph.
+    \item city stations data is loaded from file \textit{RailrdC.shp}
+    \item Labeling: two new attributes are assigned to nodes of the preliminary network: "label" and "is\_near\_city". These fields are both "empty" by default.
+    A loop checks if the preliminary network nodes' coordinates match any of the stations coordinates within a given threshold distance $d$. Nodes in the preliminary network are very dense, and in general more than one node will satisfy the threshold condition. The best match is assigned attribute "label = station\_name", while the others that also satisfy threshold are assigned "is\_near\_city = station\_name". 
+    \item a new empty network is initialized and the nodes of the preliminary network with "label" $\neq$ "empty" (i.e. all the best matches) are added to it,
+    \item \textbf{Edge creation} a maximum radius parameter $R$ is defined. The presence of an edge is checked only for the pair of nodes within distance $<2\,R$. The other pairs are assumed to not be connected: this introduces a possible error source but was necessary to obtain feasible computations.
+    \item For each node pair in the new graph, the shortest paths between them in the \textit{old} graph is calculated. If a shortest path exists where all intermediate nodes have both fields "label" and "is\_near\_city" $\equiv$ "empty" (i. e. there exists a rail which connects the cities with no intermediate stops), these nodes are connected with an edge in the new graph.
 \end{enumerate}
-Then, the graph is created and saved with usual routines. Final output files are \textbf{"{ICC}\_nodes.csv"} and \textbf{"{ICC}\_nodes.csv"}.
-\medskip \newline
-The introduction of the "is\_near\_city" field was necessary because rail bifurcations often start slightly before or after entering a city station. In reality, the train must pass through the city station even if it takes the bifurcation. Without the "is\_near\_city" field, non-existent edges would be erroneously created (see figure \ref{fig:pescara_area}). The maximum radius parameter for checking edges only between sufficiently close cities was crucial for speeding up computations, especially in countries with a high number of stations and densely connected railways, such as Poland. Both threshold parameter for city matching in \textbf{flexible\_matching} and maximum radius have to be tuned after looking at the raw data.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width= \textwidth]{latex_source/images/railways/pescara_area.pdf}
-    \caption{An example to justify the need for the "is near city" check: a rail bifurcation starts just before entering Pescara from south. Without the check implementation, edge "Termoli-Chieti" is created whereas in reality it does not exist: one wanting to get to Chieti must first get to Pescara, then take another train to Chieti. }
-    \label{fig:pescara_area}
-\end{figure}
-\newpage
-\section{Results Visualization}
+Notice that two threshold parameters $d$ and $R$ where added in this procedure. They were tuned by trial and error, and depended upon the country considered. The introduction of the auxiliary attribute "is\_near\_city" may seem unnnecessary, but was motivated by data inspection [see Appendix, figure \ref{fig:bifurcation}]. In fact, rail bifurcations often start slightly before or after entering a city station. In reality, the train must pass through the city station even if it takes the bifurcation. Without the "is\_near\_city" field, the final network contained more edges than it should. Results for Italy are shown in [Figure: \ref{fig:rail_results}], while all other networks visualizations are in GitHub repository.
 \begin{figure}[H]
 \centering
     \includegraphics[width = 0.7\textwidth]{latex_source/images/railways/city_networks/IT_network.pdf}
-\begin{comment}
-IT (Italy) cities/ railways networks. Note the high density of edges in the center-left zone of the graph: it is a consequence of the fact that the stations "Roma Termini" and "Roma Tiburtina" are missing from file "RailrdC.shp". Many stations result directedly connected where in reality they are not because Rome stations are in between.
-\end{comment}
-
 \begin{subfigure}{}
     \includegraphics[width = 0.3\textwidth]{latex_source/images/railways/raw_networks/raw_IT_network.pdf}
 \end{subfigure}
 \begin{subfigure}{}
     \includegraphics[width = 0.6\textwidth]{latex_source/images/railways/city_network_analysis/IT_analysis.pdf}
 \end{subfigure}
-\caption{}
+\caption{IT (Italy) cities/ railways networks. Notice for instance the high density of edges in the center-left zone of the graph: it is a consequence of the fact that the stations "Roma Termini" and "Roma Tiburtina" are missing from file "RailrdC.shp" ! Many stations result directedly connected where in reality they are not because Rome stations are in between.}
+\label{fig:rail_results}
 \end{figure}
 \newpage
-\subsection*{Appendix}
+\section*{Appendix}
 \addcontentsline{toc}{section}{Appendix}
-\subsection*{Supplementary Figures}
+\subsection*{Supplementary figures}
 \begin{figure}[H]
     \centering
-    \includegraphics[width = 0.8 \textwidth]{latex_source/images/railways/europe.pdf}
-    \includegraphics[width = 0.7\textwidth]{latex_source/images/railways/italy.pdf}
-    \caption{\textbf{Top}: Railways and stations of the whole Europe. Each dot (line, respectively) is an element of the dataframe stations (railways, respectively). Only operational lines (EXS code $= 28$) have been filtered out. \textbf{Bottom}: A zoom on Italy. We can already see by eye that data is incomplete (for instance,stations of Verona, Trieste and Roma are missing form the chart). Also, in the metropolitan area of Napoli there is a high density of stations, because also the smallest ones are reported in the database, whereas for other areas of Italy (like Veneto) only the biggest stations are reported. We cannot thus expect to recover a very accurate network of railways from this dataset.}
-\label{fig:rails_preliminary}
+    \includegraphics[width= \textwidth]{latex_source/images/railways/pescara_area.pdf}
+    \caption{An example to justify the need for the "is near city" check: the rail bifurcation "Roma - Pescara" innests on the "Ancora - Lecce" rail just before entering Pescara from south. Without the check implementation, edge "Termoli-Chieti" is created whereas in reality it does not exist: a train heading to Chieti must first stop in Pescara. }
+    \label{fig:pescara_area}
 \end{figure}

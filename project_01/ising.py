@@ -126,8 +126,8 @@ def estimate_temperature(df):
     dM_dT = np.gradient(df['abs_magnetization'], df['temperature'])
     Tc_magnetization = df['temperature'].iloc[np.argmax(np.abs(dM_dT))]
 
-    dE_dT = np.gradient(df['energy'], df['temperature'])
-    Tc_energy = df['temperature'].iloc[np.argmax(np.abs(dE_dT))]
+    #dE_dT = np.gradient(df['energy'], df['temperature'])
+    #Tc_energy = df['temperature'].iloc[np.argmax(np.abs(dE_dT))]
 
     # METHOD 2: Fit of peaks in magnetic susceptibility and heat capacity
     local_peaks_indices, _ = find_peaks(df['susceptibility'])
@@ -138,15 +138,16 @@ def estimate_temperature(df):
     max_index = [index for index, value in local_peaks_dict.items() if value == max_value][0]
     Tc_susceptibility = df['temperature'].iloc[max_index]
 
-    local_peaks_indices, _ = find_peaks(df['heat'])
-    local_peak_temperatures = df['temperature'].iloc[local_peaks_indices]
-    local_peak_values = df['heat'].iloc[local_peaks_indices]
-    local_peaks_dict = {index: value for index, value in zip(local_peaks_indices, local_peak_values)}
-    max_value = max(local_peaks_dict.values())
-    max_index = [index for index, value in local_peaks_dict.items() if value == max_value][0]
-    Tc_heat = df['temperature'].iloc[max_index]
+    #local_peaks_indices, _ = find_peaks(df['heat'])
+    #local_peak_temperatures = df['temperature'].iloc[local_peaks_indices]
+    #local_peak_values = df['heat'].iloc[local_peaks_indices]
+    #local_peaks_dict = {index: value for index, value in zip(local_peaks_indices, local_peak_values)}
+    #max_value = max(local_peaks_dict.values())
+    #max_index = [index for index, value in local_peaks_dict.items() if value == max_value][0]
+    #Tc_heat = df['temperature'].iloc[max_index]
 
-    Tc_estimates = np.array([Tc_magnetization, Tc_energy, Tc_susceptibility, Tc_heat])
+    Tc_estimates = np.array([Tc_magnetization, Tc_susceptibility])
+    #Tc_estimates = np.array([Tc_magnetization, Tc_energy, Tc_susceptibility, Tc_heat])
     Tc_average = np.mean(Tc_estimates)
     Tc_std = np.std(Tc_estimates)
-    return Tc_average, Tc_std
+    return [Tc_average, Tc_std]
