@@ -3,17 +3,17 @@
 \section{Task Description}
 The goal of this task is to simulate a Turing activator-inhibitor dynamics on networks, possibly replicating some of the results reported in \cite{main_network}. 
 \section{Mathematical Model}
-A network-organized activator-inhibitor system can be defined in very close analogy to what one does for continuous media. 
-The equations for the system are of the reaction-diffusion kind:
+An activator-inhibitor system on a network can be defined in very close analogy to what one does on a continuous medium. 
+The equations for the system are of the reaction-diffusion type:
 $$
 \begin{cases}
 \dot{u}_i(t) = f(u_i\, v_i) - \epsilon\,[L\,u(t)]_i \\
 \dot{v}_i(t) = g(u_i\, v_i) - \epsilon\, \sigma [L\,v(t)]_i \\
 \end{cases}
 $$
-Here, $\mathbf{u} = (u_1, \cdots u_N)$ and $\mathbf{v} = (v_1, \cdots v_N)$ are, respectively, the concentrations of the activator substance and the inhibitor substance on the $N$ nodes of the network. The reactions take place locally, on each node, and are encoded in the reaction terms $f(u_i\, v_i)$ and $f(u_i\, v_i)$. L is the laplacian matrix, defined as $L=D-A$ where $D_{i,\,j}=k_i \cdot \delta_k(i,j)$ and $A$ is the adiacency matrix. The diffusivity of the activator species is $\epsilon$, while that of the inhibitor is $\epsilon\,\sigma$, so that $\sigma$ is the ratio between them. The reaction term are supposed to satisfy the following two basic requirements:
+Here, $\mathbf{u} = (u_1, \cdots u_N)$ and $\mathbf{v} = (v_1, \cdots v_N)$ are, respectively, the concentrations of the activator and the inhibitor substance on the $N$ nodes of the network. The reactions take place on each node and are encoded in the reaction terms $f$ and $g$. L is the laplacian matrix, defined as $L=D-A$ where $D_{i,\,j}=k_i \cdot \delta_{i,j}$ and $A$ is the adiacency matrix. The diffusivity of the activator substance is $\epsilon$, while that of the inhibitor is $\epsilon\,\sigma$, so that $\sigma$ is the ratio between them. The reaction terms are supposed to satisfy two basic requirements:
 \begin{enumerate}
-	\item Existence of a homogeneous equilibrium $(\overline{u},\, \overline{v})$ which is linearly stable [Appendix: \ref{app:bifurcation_diagram}] in absence of diffusion. Indeed, the key idea of the Turing model is that the instability is driven by diffusion:
+	\item There exists a homogeneous equilibrium $(\overline{u},\, \overline{v})$ which is linearly stable in the absence of diffusion (indeed, the key concept of the Turing model is that the instability is driven by diffusion). In mathematical terms [Appendix: \ref{app:bifurcation_diagram}]:
 \begin{equation}
 \begin{pmatrix}
     f(\overline{u}\,, \overline{v}) \\
@@ -70,7 +70,7 @@ The conditions for pattern emergence are found through linear stability analysis
     \end{pmatrix}
     \cdot \sum_{n=1}^{N}\, c_n\,\Phi_i^{(n)}\, e^{\lambda_n\,t} \\
 \end{equation*}
-where coefficients $c_n$ are determined by the initial conditions. The growth rate $\lambda_n$ of the $n-$mode is found through the resolution of an eigenvalue problem that depends on $(\Lambda_n, \sigma$, $\epsilon)$, where $\Lambda_n$ is the laplacian eigenvalue associated with eigenvector $\Phi^{(n)}$, and generally is a complex number. The function $\mathcal{R}e\{\lambda_n\} (\Lambda_n | \epsilon, \sigma)$ is usually referred to as the \textit{dispersion relation}.
+where coefficients $c_n$ are determined by the initial conditions. The growth rate $\lambda_n$ of the $n-$mode is found through the resolution of an eigenvalue problem that depends on $(\Lambda_n, \sigma$, $\epsilon)$, where $\Lambda_n$ is the laplacian eigenvalue associated with eigenvector $\Phi^{(n)}$. The function $\mathcal{R}e\{\lambda_n\} (\Lambda_n | \epsilon, \sigma)$ is usually referred to as the \textit{dispersion relation}.
 Whether the $n$-mode amplitude grows with time or decays depends on the sign of $\mathcal{R}e\{\lambda_n\}$. One finds that the dispersion curve $\mathcal{R}e\{\lambda\}(\Lambda|\epsilon, \sigma)$ lies entirely below the x axis for $\sigma < \sigma_C$ ($\Rightarrow$ no instability), while assumes positive values in some range of positive $\Lambda$'s for all $\sigma > \sigma_C$ ($\Rightarrow$ instability). This critical threshold $\sigma_C$ is a function of the jacobian $J$ [Eq: \ref{eq:basic_1}] alone:
 \begin{equation}
  \sigma > \sigma_c :=  \frac{(f_u\,g_v - 2\,f_v\,g_u)\, + 2\,\sqrt{f_v\,g_u\,(f_v\,g_u-f_u\,g_v))}}{f_u^2}
@@ -82,7 +82,7 @@ For $\sigma$ slightly above the critical threshold, the unstable mode(s) will co
     \Lambda_c(\epsilon) := \frac{1}{\epsilon}\,\sqrt{\frac{\text{det}[J]}{\sigma_c}}
     \label{eq:critical_eigenvalue}
 \end{equation}
-The full derivation is presented in [Appendix: \ref{section:conditions_for_instability}].
+The full derivation of the above equations [Eq: \ref{eq:critical_eigenvalue}, \ref{eq:critical_threshold}] is presented in [Appendix: \ref{section:conditions_for_instability}].
 The subsequent evolution of the pattern is non-linear and eventually results in a steady state (that can be either stationary or time dependent).  \bigskip \newline \noindent
 \section{Numerical Simulations}
 As in \cite{main_network}, the reaction terms are set as
@@ -98,7 +98,7 @@ helding a linearly stable fixed point $(\overline{u},\, \overline{v}) = (5, 10)$
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{latex_source/images/turing/multiple_dispersion.pdf}
-    \caption{ Dispersion relation for the chosen reaction kinetics [Eq. $\ref{eq:chosen_kinetics}$], at different values of the activator diffusivity $\epsilon$. The dashed grey lines are the dispersion curves slightly above and below the critical diffusivity ratio $\sigma_c$. The critical eigenvalue $\Lambda_c$ Eq. \ref{eq:critical_eigenvalue}] is inversely proportional to the activator diffusivity $\epsilon$.}
+    \caption{ Dispersion relation for the chosen reaction kinetics [Eq. $\ref{eq:chosen_kinetics}$], at different values of the activator diffusivity $\epsilon$. The dashed grey lines are the dispersion curves slightly above and below the critical diffusivity ratio $\sigma_c$. The critical eigenvalue $\Lambda_c$ [Eq. \ref{eq:critical_eigenvalue}] is inversely proportional to the activator diffusivity $\epsilon$.}
 \end{figure}
 Following the choice of the authors, I simulated the dynamics on Barabasi-Albert scale free networks. I chose parameters $N = 200$ for the number of nodes and $\left \langle k \right \rangle = 10$ for the mean degree. My activator diffusivity was $\epsilon = 0.12$, and my diffusivity ratio was $\sigma = 15.6 > \sigma_c = 15.5$. The reasoning for chosing a diffusivity ratio that is only slightly above the critical threshold is to keep the number of different allowed modes low.
 \begin{figure}[H]
