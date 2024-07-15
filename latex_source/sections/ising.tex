@@ -2,15 +2,15 @@
 \section{Task Description}
 The Ising model, initially examined in d-dimensional regular lattices, has been demonstrated to undergo phase transitions in certain types of complex networks as well. This task aims to review various analytical results that have been established \cite{crit_fen_review} and to simulate the dynamics of the Ising model on networks.
 \section{Mathematical Model}
-The ferromagnetic Ising model on a network of $N$ nodes and adiacency matrix $A$ is described in its most general form by the hamiltonian:
+The ferromagnetic Ising model on a network of $N$ nodes and adiacency matrix $A$ is described in its most general form by the Hamiltonian:
 \begin{equation*}
     \mathcal{H}(\mathbf{s}) = - \sum_{i < j}\, J_{i,j}\,s_i\cdot s_j - \sum_{i}\, h_i\,s_i
 \end{equation*}
 where $\mathbf{s} = (s_1, \cdots s_N) \in \{\pm 1\}^N$ is the spin configuration of the nodes, the couplings $J_{i,\,j}$ describe the pairwise spin interactions and $h_i$ is a site-dependent external field.
-In the following, it will be always assumed $J_{i,\,j} \equiv 1\cdot A_{i,\,j}$ (only nearest neighbours interactions, of homogeneous strength) and $h_i \equiv h$ (homogeneous external field), so that the hamiltonian simplifies to:
+In the following, it will be always assumed $J_{i,\,j} \equiv 1\cdot A_{i,\,j}$ (only nearest neighbours interactions, of homogeneous strength) and $h_i \equiv h$ (homogeneous external field), so that the Hamiltonian simplifies to:
 \begin{equation}
         \mathcal{H}(\mathbf{s}) = - \sum_{i < j}\, A_{i,j}\,s_i\cdot s_j - h\cdot \sum_{i}\,s_i.
-        \label{eq:ising_hamiltonian}
+        \label{eq:ising_Hamiltonian}
 \end{equation}
 The network is surrounded by a heat bath at temperature $T = \frac{1}{\beta} $ ($k_B \equiv 1$). The partition function $Z$ and the free energy $F$ are given by:
 \begin{equation*}
@@ -30,7 +30,7 @@ M &= \mathbbm{E}\left[\sum_{i} s_i \right] \equiv \left( \frac{\partial F}{\part
 \begin{equation} \label{eq:hom_mean_field}
     T_C^{\text{hom. MF}} =\,\left\langle k \right \rangle.
 \end{equation}
-[Appendix \ref{app:mean_field}] contains the explicit calculation of this formula. According to mean field approximation, the critical temperature is expected to increase with the average degree, which indicates that adding more connections between the nodes helps in mantaining long-range order. The more precise heterogeneous (or degree-based) mean field approximation yields instead:
+[Appendix \ref{app:mean_field}] contains the explicit calculation of this formula. According to mean field approximation, the critical temperature is expected to increase with the average degree, which indicates that adding more connections between the nodes helps in maintaining long-range order. The more precise heterogeneous (or degree-based) mean field approximation yields instead:
 \begin{equation} \label{eq:het_mean_field}
     T_C^{\text{het. MF}} =\,\frac{\left\langle k^2 \right \rangle}{\left\langle k \right \rangle}.
 \end{equation}
@@ -58,16 +58,16 @@ The average degree is left unchanged by the finite size correction:  $\left \lan
     T_C^{\text{hom. MF}} = 2m, \quad \quad T_C^{\text{het. MF}} \simeq \frac{m}{2}\,\text{ln}(N)
 \end{equation}
 As mentioned earlier, these formulas are derived for uncorrelated networks, which BA networks are not. Nevertheless, the authors of \cite{numeric_ising} verified through simulations that BA networks also align well with these formulas.
-The heterogeneous mean field approximation predicts a logaritmic increase of the temperature with the network size, which means that in the thermodynamic limit ($N\rightarrow +\infty$) the network is expected to be ferromagnetic at all temperatures.
-The homogeneous mean field is too drastic and fails to predict this behaviour. 
+The heterogeneous mean field approximation predicts a logarithmic increase of the temperature with the network size, which means that in the thermodynamic limit ($N\rightarrow +\infty$) the network is expected to be ferromagnetic at all temperatures.
+The homogeneous mean field is overly simplistic and fails to predict this behaviour. 
 \bigskip \newline \noindent
 The algorithm I implemented to simulate the Ising dynamic is the Metropolis-Hasting. As a preliminary check, I first used my code to simulate the Ising model on a regular $2d$ lattice of $N =400$ nodes [Appendix, figures: \ref{fig:2d_relaxation} and \ref{fig:2d_scaling}]. and then on BA networks of the same size.
 Computational time for the simulations on BA was much higher: for comparison, obtaining the scaling of thermodynamic quantities with temperature [Appendix, figure: \ref{fig:2d_scaling}] took $12$ minutes, whereas obtaining the same data for BA [Figure: \ref{fig:ising_BA_scaling}] took on average $1h$). Handling the adiacency matrix of the network in sparse format brought a significant performance improvement, but still the computations were long. \medskip \newline \noindent
-For estimating the critical temperature, I initially planned to derive an estimate from each of the four thermodynamic quantities ($E, \left\langle s \right\rangle, C, \chi$) and then average them. However, I found that the peak temperature of the specific heat $C$ was sistematically lower than the peak temperature of the magnetic suscepitibility $\chi$ [see Figure: \ref{fig:ising_BA_scaling}]. Among the two peaks, the latter was closer to the theoretical temperature value. This discrepancy was not observed in preliminary simulations on a $2d$ regular lattice, indicating that it is not an artifact of my code. In fact, this same behavior was also observed by my colleague D. Wellingut \cite{dw}. Therefore, I averaged the temperatures obtained from the magnetization and the magnetic susceptibility, disregarding the other two. The final results of my simulations are shown in [Figure: \ref{fig:final_ising}]. The critical temperature estimated from the simulations is systematically lower than the theoretical predictions, but at least the dependence on $m$ is similiar.
+For estimating the critical temperature, I initially planned to derive an estimate from each of the four thermodynamic quantities ($E, \left\langle s \right\rangle, C, \chi$) and then average them. However, I found that the peak temperature of the specific heat $C$ was systematically lower than the peak temperature of the magnetic susceptibility $\chi$ [see Figure: \ref{fig:ising_BA_scaling}]. Among the two peaks, the latter was closer to the theoretical temperature value. This discrepancy was not observed in preliminary simulations on a $2d$ regular lattice, indicating that it is not an artifact of my code. In fact, this same behavior was also observed by my colleague D. Wellingut \cite{dw}. Therefore, I averaged the temperatures obtained from the magnetization and the magnetic susceptibility, disregarding the other two. The final results of my simulations are shown in [Figure: \ref{fig:final_ising}]. The critical temperature estimated from the simulations is systematically lower than the theoretical predictions, but at least the dependence on $m$ is similar.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{latex_source/images/ising/BA_temperatures.pdf}
-    \caption{Scaling of the critical temperature with the minimum degree, for BA networks of $400$ nodes. The data refer to the critical temperature estrapolated from the magnetization and the magnetic susceptibility peak.}
+    \caption{Scaling of the critical temperature with the minimum degree, for BA networks of $400$ nodes. The data refers to the critical temperature estrapolated from the magnetization and the magnetic susceptibility peak.}
     \label{fig:final_ising}
 \end{figure}
 
@@ -83,13 +83,13 @@ For estimating the critical temperature, I initially planned to derive an estima
 \addcontentsline{toc}{section}{Appendix}
 \subsection*{Homogeneous mean-field calculation for $T_C$ } \label{app:mean_field}
 {\small
-The mean field approximation consists in negletting the pairwise spin correlations $
+The mean field approximation consists in neglecting the pairwise spin correlations $
     \text{corr}(s_i,\,s_j) = (s_i - \left\langle s_i \right \rangle)\cdot (s_j - \left\langle s_j \right \rangle)\simeq 0 $.
-Moreover, the homogeneous mean field supposes that the average magnetization on each node is the same for all nodes $\left\langle s_i\right\rangle \equiv \left \langle s \right \rangle$. We start from the Ising hamiltonian $H\{\mathbf{s}\} = -\frac{1}{2}\, \sum_{i,\,j}\,A_{i,\,j}\,s_i\cdot s_j - h\cdot\sum_{i}\,s_i$ and write the identity: 
+Moreover, the homogeneous mean field supposes that the average magnetization on each node is the same for all nodes $\left\langle s_i\right\rangle \equiv \left \langle s \right \rangle$. We start from the Ising Hamiltonian $H\{\mathbf{s}\} = -\frac{1}{2}\, \sum_{i,\,j}\,A_{i,\,j}\,s_i\cdot s_j - h\cdot\sum_{i}\,s_i$ and write the identity: 
 \begin{align*}
     s_i\cdot s_j &= [s_i - \left\langle s \right \rangle + \left\langle s \right \rangle]\cdot [s_j - \left\langle s \right \rangle + \left\langle s \right \rangle] \\
     &= (s_i - \left\langle s \right \rangle)\cdot (s_j-\left\langle s \right \rangle) + (s_i + s_j) \left\langle s \right \rangle - \left\langle s \right \rangle^2 \simeq (s_i + s_j) \left\langle s \right \rangle - \left\langle s \right \rangle^2
-\end{align*} where the latter is obtained disregarding the correlation term. With this substitution, the hamiltonian becomes 
+\end{align*} where the latter is obtained disregarding the correlation term. With this substitution, the Hamiltonian becomes 
 \begin{equation*}
     H \simeq\frac{1}{2}\,\left\langle s \right \rangle^2\,N\,\left\langle k \right \rangle - \sum_i\,s_i\cdot (\left\langle k \right \rangle\left\langle s \right \rangle + h)=: H^{MF}(\mathbf{s})
 \end{equation*}
@@ -113,7 +113,7 @@ For $\beta < \beta_C = \frac{1}{\left\langle k\right\rangle}$, there are no inte
 \end{figure}
 \subsection*{Preliminary Montecarlo simulation on a 2D lattice}
 {\small
-An infinite regular $2-$ dimentional spin lattice with hamiltonian given by [Eq: \ref{eq:ising_hamiltonian}] exibits a second order phase transition at the critical temperature 
+An infinite regular $2-$ dimensional spin lattice with Hamiltonian given by [Eq: \ref{eq:ising_Hamiltonian}] exibits a second order phase transition at the critical temperature 
 \begin{equation}
 T_C = \frac{2\,}{\,\log{1 + \sqrt{2}}} \simeq 2.26
     \label{eq:onsager}
